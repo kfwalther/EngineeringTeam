@@ -146,13 +146,17 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="category.cpp" />
     <ClCompile Include="parser.cpp" />
     <ClCompile Include="questions.cpp" />
     <ClCompile Include="WheelOfJeopardycpp.cpp" />
+    <ClCompile Include="WoJ.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="category.h" />
     <ClInclude Include="parser.h" />
     <ClInclude Include="questions.h" />
+    <ClInclude Include="WoJ.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

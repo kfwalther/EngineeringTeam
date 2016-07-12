@@ -11,7 +11,6 @@ parser::parser()
 {
 }
 
-
 parser::~parser()
 {
 }

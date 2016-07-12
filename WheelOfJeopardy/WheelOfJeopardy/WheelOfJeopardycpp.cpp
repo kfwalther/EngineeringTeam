@@ -5,15 +5,15 @@
 #include <queue>
 #include "questions.h"
 #include "parser.h"
+#include "category.h"
+#include "WoJ.h"
 
 using namespace std;
 
 void main()
 {
-	queue <questions> Q;
-	string c = "category1.csv";
-	parser Parse;
-	Parse.parseCategory(Q, c);
-	cout << c << " " << Q.size() << endl;
+	WoJ W;
+
+
 }
 

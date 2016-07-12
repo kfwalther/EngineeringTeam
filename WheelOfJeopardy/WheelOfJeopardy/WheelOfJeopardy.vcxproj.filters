@@ -24,12 +24,24 @@
     <ClCompile Include="WheelOfJeopardycpp.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="WoJ.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="category.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="parser.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="questions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="WoJ.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="category.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

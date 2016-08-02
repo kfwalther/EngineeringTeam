@@ -1,6 +1,6 @@
 #include "category.h"
 #include "parser.h"
-#include "questions.h"
+#include "Question.h"
 
 category::category()
 {
@@ -14,9 +14,9 @@ void category::initialize(std::string csv)
 	Parse.~parser();
 }
 
-questions category::getQuestionInfo()
+Question category::getQuestionInfo()
 {
-	questions Q = categoryQuestions.front();
+	Question Q = categoryQuestions.front();
 	categoryQuestions.pop();
 	return Q;
 }

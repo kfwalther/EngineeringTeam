@@ -1,6 +1,6 @@
 #pragma once
 #include <queue>
-#include "questions.h"
+#include "Question.h"
 
 /**
  * @class parser
@@ -19,8 +19,8 @@ public:
 	 * @brief Parse and store the question information for the given category.
 	 *
 	 * @param[in] category A string indicating the category input file.
-	 * @param[in,out] queue A queue container housing questions objects.
+	 * @param[in,out] queue A queue container housing Question objects.
 	 */
-	void parseCategory(std::queue<questions> &queue, std::string &category);
+	void parseCategory(std::queue<Question> &queue, std::string &category);
 };
 

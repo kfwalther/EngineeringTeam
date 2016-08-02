@@ -8,7 +8,7 @@
 #include <fstream>
 #include <string>
 #include <queue>
-#include "questions.h"
+#include "Question.h"
 #include "parser.h"
 
 // Alias the std namespace for convenience.
@@ -20,7 +20,7 @@ using namespace std;
 void main()
 {
 	// Define a queue container of question objects.
-	queue <questions> Q;
+	queue <Question> Q;
 	// Define the category input file to use.
 	string c = "category1.csv";
 	// Define the parser object.

@@ -1,5 +1,5 @@
 #include "parser.h"
-#include "questions.h"
+#include "Question.h"
 #include <iostream>
 #include <fstream>
 #include <string>
@@ -15,7 +15,7 @@ parser::~parser()
 {
 }
 
-void parser::parseCategory(std::queue<questions> &queue, std::string &category)
+void parser::parseCategory(std::queue<Question> &queue, std::string &category)
 {
 	string question;
 	string answer;
@@ -39,7 +39,7 @@ void parser::parseCategory(std::queue<questions> &queue, std::string &category)
 
 		points = atol(tempPoints.c_str());
 
-		questions placeHolder(question, answer, points);
+		Question placeHolder(question, answer, points);
 
 		queue.push(placeHolder);
 	}

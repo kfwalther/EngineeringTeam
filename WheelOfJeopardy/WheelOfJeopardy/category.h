@@ -1,18 +1,18 @@
 #pragma once
 
 #include <queue>
-#include "questions.h"
+#include "Question.h"
 
 class category
 {
 public:
 	category();
 	void initialize(std::string csv);
-	questions getQuestionInfo();
+	Question getQuestionInfo();
 	std::string getCategoryName();
 	~category();
 private:
-	std::queue<questions> categoryQuestions;
+	std::queue<Question> categoryQuestions;
 	std::string categoryName;
 };
 

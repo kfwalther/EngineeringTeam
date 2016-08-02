@@ -1,5 +1,4 @@
 #include "WoJ.h"
-#include "category.h"
 #include <iostream>
 
 WoJ::WoJ()

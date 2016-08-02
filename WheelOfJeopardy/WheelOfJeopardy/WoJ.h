@@ -1,5 +1,5 @@
 #pragma once
-#include "category.h"
+#include "QCategory.h"
 
 class WoJ
 {
@@ -8,12 +8,12 @@ public:
 	~WoJ();
 
 private:
-	category category1;
-	category category2;
-	category category3;
-	category category4;
-	category category5;
-	category category6;
+	QCategory category1;
+	QCategory category2;
+	QCategory category3;
+	QCategory category4;
+	QCategory category5;
+	QCategory category6;
 	std::string category1_csv = "category1.csv";
 	std::string category2_csv = "category2.csv";
 	std::string category3_csv = "category3.csv";

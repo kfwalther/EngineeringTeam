@@ -146,16 +146,17 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="category.cpp" />
     <ClCompile Include="parser.cpp" />
+    <ClCompile Include="QCategory.cpp" />
     <ClCompile Include="Question.cpp" />
     <ClCompile Include="WheelOfJeopardycpp.cpp" />
     <ClCompile Include="WoJ.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="category.h" />
     <ClInclude Include="parser.h" />
+    <ClInclude Include="QCategory.h" />
     <ClInclude Include="Question.h" />
+    <ClInclude Include="Sector.h" />
     <ClInclude Include="WoJ.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

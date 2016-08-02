@@ -24,10 +24,10 @@
     <ClCompile Include="WoJ.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="category.cpp">
+    <ClCompile Include="Question.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Question.cpp">
+    <ClCompile Include="QCategory.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -38,10 +38,13 @@
     <ClInclude Include="WoJ.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="category.h">
+    <ClInclude Include="Question.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Question.h">
+    <ClInclude Include="QCategory.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Sector.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

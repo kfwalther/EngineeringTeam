@@ -147,15 +147,19 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="parser.cpp" />
+    <ClCompile Include="Player.cpp" />
     <ClCompile Include="QCategory.cpp" />
     <ClCompile Include="Question.cpp" />
+    <ClCompile Include="SCategory.cpp" />
     <ClCompile Include="WheelOfJeopardycpp.cpp" />
     <ClCompile Include="WoJ.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="parser.h" />
+    <ClInclude Include="Player.h" />
     <ClInclude Include="QCategory.h" />
     <ClInclude Include="Question.h" />
+    <ClInclude Include="SCategory.h" />
     <ClInclude Include="Sector.h" />
     <ClInclude Include="WoJ.h" />
   </ItemGroup>

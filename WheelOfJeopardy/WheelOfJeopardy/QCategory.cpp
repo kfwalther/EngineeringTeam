@@ -1,10 +1,10 @@
 
 /**
-* @file QCategory.cpp
-* @brief This file contains the QCategory class definition.
-* @author Edwin Flores
-* @date 2016
-*/
+ * @file QCategory.cpp
+ * @brief This file contains the QCategory class definition.
+ * @author Edwin Flores
+ * @date 2016
+ */
 #include "QCategory.h"
 #include "parser.h"
 #include "Question.h"

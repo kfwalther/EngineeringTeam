@@ -1,12 +1,14 @@
 #pragma once
 
 /**
-* @class Sector
-* @brief WoJ Sector object.
-* @author Edwin Flores
-* @date 2016
-* @ingroup WheelOfJeopardy
-*/
+ * @class Sector
+ * @brief WoJ Sector object.
+ * @author Kevin Walther
+ * @date 2016
+ * @ingroup WheelOfJeopardy
+ */
+
+#include <string>
 
 class Sector
 {

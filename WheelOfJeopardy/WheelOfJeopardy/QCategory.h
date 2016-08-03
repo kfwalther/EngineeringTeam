@@ -1,12 +1,12 @@
 #pragma once
 
 /**
-* @class QCategory
-* @brief WoJ QCategory object.
-* @author Edwin Flores
-* @date 2016
-* @ingroup WheelOfJeopardy
-*/
+ * @class QCategory
+ * @brief WoJ QCategory object.
+ * @author Edwin Flores
+ * @date 2016
+ * @ingroup WheelOfJeopardy
+ */
 #include <queue>
 #include "Sector.h"
 #include "Question.h"

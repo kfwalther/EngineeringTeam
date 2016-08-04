@@ -10,9 +10,9 @@
 
 #include <string>
 
-#include "GameInstance.h"
+#include "GameSession.h"
 
-// Incomplete, need to fill out this class.
+
 struct Player
 {
 	// Define the constructor and destructor.
@@ -21,8 +21,8 @@ struct Player
 
 	// Define the Player object methods.
 	void createGame();
-	void joinGame(GameInstance * const & gameInstance);
-	void spinWheel(GameInstance * const & gameInstance);
+	void joinGame(GameSession * const & gameSession);
+	void spinWheel(GameSession * const & gameSession);
 	void useFreeTurnToken();
 	void calculateScore(int const value);
 	void chooseCategory();
@@ -35,5 +35,6 @@ private:
 	double score;
 	bool isJoinedGame;
 	int totalTokens;
+	GameSession * gameSessionHandle;
 };
 

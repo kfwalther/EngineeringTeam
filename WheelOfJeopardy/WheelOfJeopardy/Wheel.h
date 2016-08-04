@@ -1,0 +1,40 @@
+#pragma once
+
+/**
+ * @class Wheel
+ * @brief WoJ Wheel object.
+ * @author Kevin Walther
+ * @date 2016
+ * @ingroup WheelOfJeopardy
+ */
+
+#include <string>
+#include <vector>
+
+#include "Sector.h"
+
+// Forward declaration
+struct GameRoom;
+
+struct Wheel
+{
+	// Alias the vector of strings type.
+	typedef std::vector<std::string> StringVectorType;
+	// Alias the vector of Sector objects type.
+	typedef std::vector<Sector> SectorVectorType;
+
+	// Define the constructor and destructor.
+	Wheel();
+	~Wheel();
+
+	// Define the Wheel object methods.
+	Sector const & getSector(int const sectorIndex);
+	StringVectorType const & listCategories();
+private:
+	int WheelID;
+	int counter;
+	SectorVectorType * sectors;
+	// Still need to define WheelFrame class.
+	//WheelFrame * wheelFrame; 
+};
+

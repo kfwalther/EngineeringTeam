@@ -21,15 +21,15 @@ Player::~Player()
 // Define the Player object methods.
 void Player::createGame()
 {
-
+	this->gameSessionHandle = new GameSession();
 }
 
-void Player::joinGame(GameInstance * const & gameInstance)
+void Player::joinGame(GameSession * const & gameSession)
 {
 
 }
 
-void Player::spinWheel(GameInstance * const & gameInstance)
+void Player::spinWheel(GameSession * const & gameSession)
 {
 
 }

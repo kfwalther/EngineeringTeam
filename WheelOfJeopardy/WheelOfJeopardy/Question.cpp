@@ -12,11 +12,11 @@ Question::Question()
 {
 }
 
-Question::Question(std::string q, std::string a, int p)
+Question::Question(std::string const & question, std::string const & answer, int const points)
 {
-	questionContent = q;
-	answerContent = a;
-	pointValue = p;
+	questionContent = question;
+	answerContent = answer;
+	pointValue = points;
 	// Initialize the timer for the question.
 	// TODO: Check if this is the correct number of seconds...
 	timer = 30;

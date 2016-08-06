@@ -8,10 +8,11 @@
 #include "SCategory.h"
 
 
-SCategory::SCategory(int const sectorType, std::string const sectorName)
+SCategory::SCategory(std::string const sectorName)
 {
-	this->sectorType = sectorType;
-	this->sectorName= sectorName;
+	// Sector.sectorType: 1 == QCategory, 2 == SCategory
+	this->sectorType = 2;
+	this->sectorName = sectorName;
 }
 
 SCategory::~SCategory()

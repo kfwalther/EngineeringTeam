@@ -12,7 +12,7 @@ class Question
 {
 public:
 	Question();
-	Question(std::string q, std::string a, int p);
+	Question(std::string const & question, std::string const & answer, int const points);
 
 	/** Getter/setter methods. */
 	std::string getAnswer(void);

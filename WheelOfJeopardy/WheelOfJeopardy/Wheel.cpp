@@ -15,13 +15,19 @@ Wheel::Wheel()
 {
 	this->wheelSize = 12;
 	this->sectors = new Wheel::SectorVectorType;
-	this->sectors->push_back(new SCategory(2, "Bankrupt"));
-	this->sectors->push_back(new SCategory(2, "Lose Turn"));
-	this->sectors->push_back(new SCategory(2, "Free Turn"));
-	this->sectors->push_back(new SCategory(2, "Player Choice"));
-	this->sectors->push_back(new SCategory(2, "Opponent Choice"));
-	this->sectors->push_back(new SCategory(2, "Spin Again"));
-	// TODO: Instantiate the QCategory classes next...
+	// Create the 12 wheel sectors.
+	this->sectors->push_back(new QCategory("category1"));
+	this->sectors->push_back(new QCategory("category2"));
+	this->sectors->push_back(new QCategory("category3"));
+	this->sectors->push_back(new QCategory("category4"));
+	this->sectors->push_back(new QCategory("category5"));
+	this->sectors->push_back(new QCategory("category6"));
+	this->sectors->push_back(new SCategory("Bankrupt"));
+	this->sectors->push_back(new SCategory("Lose Turn"));
+	this->sectors->push_back(new SCategory("Free Turn"));
+	this->sectors->push_back(new SCategory("Player Choice"));
+	this->sectors->push_back(new SCategory("Opponent Choice"));
+	this->sectors->push_back(new SCategory("Spin Again"));
 }
 
 Wheel::~Wheel()

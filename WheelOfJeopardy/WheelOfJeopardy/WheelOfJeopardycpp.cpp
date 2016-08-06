@@ -24,16 +24,15 @@ void main()
 	// Let's test construction of these classes.
 	Player * kevin = new Player("Kevin");
 	kevin->createGame();
-
-	// Define a queue container of question objects.
-	queue <Question> Q;
-	// Define the category input file to use.
-	string c = "category1.csv";
-	// Define the parser object.
-	parser Parse;
-	// Call the parser for the given category.
-	Parse.parseCategory(Q, c);
-	// Print some output.
-	cout << c << " " << Q.size() << endl;
+	//// Define a queue container of question objects.
+	//queue<Question> Q;
+	//// Define the category input file to use.
+	//string c = "category1.csv";
+	//// Define the parser object.
+	//parser Parse;
+	//// Call the parser for the given category.
+	//Parse.parseCategory(Q, c);
+	//// Print some output.
+	//cout << c << " " << Q.size() << endl;
 }
 

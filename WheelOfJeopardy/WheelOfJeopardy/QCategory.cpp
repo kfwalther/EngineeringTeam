@@ -10,21 +10,22 @@
 #include "Question.h"
 
 
-QCategory::QCategory()
+QCategory::QCategory(std::string const & categoryName)
 {
+	this->initialize(categoryName + ".csv");
 }
 
 QCategory::~QCategory()
 {
 }
 
-void QCategory::initialize(std::string csv)
+void QCategory::initialize(std::string const & csv)
 {
-	parser Parse;
-	Parse.parseCategory(categoryQuestions, csv);
-	sectorName = csv;
-	sectorType = 1;		// 1 == QCategory, 2 == SCategory
-	Parse.~parser();
+	parser * Parse = new parser();
+	Parse->parseCategory(this->categoryQuestions, csv);
+	this->sectorName = csv;
+	this->sectorType = 1;		// 1 == QCategory, 2 == SCategory
+	delete Parse;
 }
 
 Question QCategory::getQuestionInfo()

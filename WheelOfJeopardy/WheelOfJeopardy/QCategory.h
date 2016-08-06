@@ -14,8 +14,8 @@
 class QCategory : public Sector
 {
 public:
-	QCategory();
-	void initialize(std::string csv);
+	QCategory(std::string const & categoryName);
+	void initialize(std::string const & csv);
 	Question getQuestionInfo();
 	std::string getCategoryName();
 	~QCategory();

@@ -10,8 +10,9 @@
 
 
 // Define the constructor and destructor.
-GameBoard::GameBoard()
+GameBoard::GameBoard(QCategoryVectorType & qCategories)
 {
+	this->qCategoryVector = &qCategories;
 }
 
 GameBoard::~GameBoard()

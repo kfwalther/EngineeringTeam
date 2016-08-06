@@ -16,10 +16,10 @@
 struct GameBoard
 {
 	// Alias the QCategory vector type.
-	typedef std::vector<QCategory> QCategoryVectorType;
+	typedef std::vector<QCategory *> QCategoryVectorType;
 
 	// Define the constructor and destructor.
-	GameBoard();
+	GameBoard(QCategoryVectorType & qCategories);
 	~GameBoard();
 
 	// Define the GameBoard object methods.

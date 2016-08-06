@@ -6,15 +6,26 @@
  * @date 2016
  */
 
-#include "GameRoom.h"
+#include <algorithm>
 
+#include "GameRoom.h"
 
 // Define the constructor and destructor.
 GameRoom::GameRoom()
 {
-	// Create the Wheel and GameBoard instances.
+	// Create the Wheel instance.
 	this->wheelHandle = new Wheel();
-	this->gameBoardHandle = new GameBoard();
+	// Initialize a vector to hold the QCategory objects.
+	GameBoard::QCategoryVectorType qCategoryVector;
+	// Copy only the QCategory objects from the Wheel into the vector.
+	auto it = std::for_each(this->wheelHandle->getSectors().begin(), this->wheelHandle->getSectors().end(),
+			[&qCategoryVector](Sector * const & currentSector) {
+				if (currentSector->getType() == 1) {
+					qCategoryVector.push_back(dynamic_cast<QCategory *>(currentSector));
+				}
+			});
+	// Create the GameBoard instance, providing it the vector of QCategory objects.
+	this->gameBoardHandle = new GameBoard(qCategoryVector);
 }
 
 GameRoom::~GameRoom()

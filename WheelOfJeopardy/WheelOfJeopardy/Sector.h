@@ -19,7 +19,9 @@ struct Sector
 	virtual void Action() = 0;
 	virtual bool isEmpty() = 0;
 	//virtual std::string toString() = 0;
-
+	int const getType() {
+		return sectorType;
+	}
 protected:
 	int sectorID;
 	std::string sectorName;

@@ -29,6 +29,8 @@ struct Wheel
 
 	// Define the Wheel object methods.
 	Sector const & getSector(int const sectorIndex);
+	Wheel::SectorVectorType const & getSectors();
+	int const getSize();
 	StringVectorType const & listCategories();
 private:
 	int wheelID;

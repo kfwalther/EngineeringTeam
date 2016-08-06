@@ -10,8 +10,9 @@
 
 
 // Define the constructor and destructor.
-Player::Player()
+Player::Player(std::string const playerName)
 {
+	this->username = playerName;
 }
 
 Player::~Player()

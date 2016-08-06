@@ -16,7 +16,7 @@
 struct Player
 {
 	// Define the constructor and destructor.
-	Player();
+	Player(std::string const playerName);
 	~Player();
 
 	// Define the Player object methods.

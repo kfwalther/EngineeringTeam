@@ -10,10 +10,9 @@
 
 #include <string>
 
-class Sector
+struct Sector
 {
-public:
-	//Sector();
+	//Sector(std::string const sectorName);
 	//virtual ~Sector();
 
 	/** Functional methods. (Pure-virtual) */

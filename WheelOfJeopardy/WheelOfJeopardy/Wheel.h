@@ -21,7 +21,7 @@ struct Wheel
 	// Alias the vector of strings type.
 	typedef std::vector<std::string> StringVectorType;
 	// Alias the vector of Sector objects type.
-	typedef std::vector<Sector> SectorVectorType;
+	typedef std::vector<Sector *> SectorVectorType;
 
 	// Define the constructor and destructor.
 	Wheel();
@@ -31,8 +31,9 @@ struct Wheel
 	Sector const & getSector(int const sectorIndex);
 	StringVectorType const & listCategories();
 private:
-	int WheelID;
+	int wheelID;
 	int counter;
+	int wheelSize;
 	SectorVectorType * sectors;
 	// Still need to define WheelFrame class.
 	//WheelFrame * wheelFrame; 

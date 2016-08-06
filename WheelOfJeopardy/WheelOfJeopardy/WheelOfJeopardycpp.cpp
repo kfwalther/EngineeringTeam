@@ -10,6 +10,7 @@
 #include <queue>
 #include "Question.h"
 #include "parser.h"
+#include "Player.h"
 
 
 // Alias the std namespace for convenience.
@@ -20,6 +21,10 @@ using namespace std;
  */
 void main()
 {
+	// Let's test construction of these classes.
+	Player * kevin = new Player("Kevin");
+	kevin->createGame();
+
 	// Define a queue container of question objects.
 	queue <Question> Q;
 	// Define the category input file to use.

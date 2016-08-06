@@ -10,10 +10,12 @@
 #include "Sector.h"
 #include "Player.h"
 
+// Forward Declaration 
+struct Player;
 
 struct SCategory : public Sector
 {
-	SCategory();
+	SCategory(int const sectorType, std::string const sectorName);
 	~SCategory();
 
 	void Bankrupt(Player * const & player);

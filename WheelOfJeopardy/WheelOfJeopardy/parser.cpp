@@ -1,11 +1,10 @@
 #include "parser.h"
-#include "questions.h"
+#include "Question.h"
 #include <iostream>
 #include <fstream>
 #include <string>
 #include <queue>
 
-using namespace std;
 
 parser::parser()
 {
@@ -15,31 +14,31 @@ parser::~parser()
 {
 }
 
-void parser::parseCategory(std::queue<questions> &queue, std::string &category)
+void parser::parseCategory(std::queue<Question> & queue, std::string const & category)
 {
-	string question;
-	string answer;
-	string tempPoints;
-	string input = category;
-	ifstream file;
+	std::string question;
+	std::string answer;
+	std::string tempPoints;
+	std::string input = category;
+	std::ifstream file;
 	int points;
 
 	file.open(input.c_str());
 
 	if (file.fail())
-		cerr << "error opening file " << endl;
+		std::cerr << "error opening file " << std::endl;
 
-	getline(file, category, '\n');
+	std::getline(file, input, '\n');
 
 	while (!file.eof())
 	{
-		getline(file, question, ',');
-		getline(file, answer, ',');
-		getline(file, tempPoints, '\n');
+		std::getline(file, question, ',');
+		std::getline(file, answer, ',');
+		std::getline(file, tempPoints, '\n');
 
-		points = atol(tempPoints.c_str());
+		points = std::atol(tempPoints.c_str());
 
-		questions placeHolder(question, answer, points);
+		Question placeHolder(question, answer, points);
 
 		queue.push(placeHolder);
 	}

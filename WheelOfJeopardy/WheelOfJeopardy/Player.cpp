@@ -27,7 +27,7 @@ void Player::createGame()
 
 void Player::joinGame(GameSession * const & gameSession)
 {
-
+	gameSession->join(this);
 }
 
 void Player::spinWheel(GameSession * const & gameSession)

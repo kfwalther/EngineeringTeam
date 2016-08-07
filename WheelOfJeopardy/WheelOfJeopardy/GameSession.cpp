@@ -33,6 +33,11 @@ void GameSession::terminateGameplay()
 void GameSession::changeTurns()
 {
 }
+void GameSession::join(Player *player)
+{
+	playerList.push_back(player);
+
+}
 GameRoom * const & GameSession::getGameRoom()
 {
 	return this->gameRoomHandle;

@@ -23,6 +23,7 @@ void main()
 	// Let's test construction of these classes.
 	Player * kevin = new Player("Kevin");
 	kevin->createGame();
+
 	//// Define a queue container of question objects.
 	//queue<Question> Q;
 	//// Define the category input file to use.

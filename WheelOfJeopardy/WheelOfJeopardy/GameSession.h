@@ -21,7 +21,7 @@ struct Player;
 struct GameSession
 {
 	// Alias the list of Player objects attribute.
-	typedef std::list<Player> PlayerListType;
+	typedef std::list<Player *> PlayerListType;
 
 	// Define the constructor/destructor.
 	GameSession();
@@ -31,6 +31,7 @@ struct GameSession
 	void initiateGameplay();
 	void terminateGameplay();
 	void changeTurns();
+	void join(Player *player);
 	GameRoom * const & getGameRoom();
 protected:
 	int sessionID;

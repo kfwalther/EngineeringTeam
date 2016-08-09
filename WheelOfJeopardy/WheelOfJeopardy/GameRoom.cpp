@@ -40,5 +40,7 @@ GameRoom::~GameRoom()
 }
 
 // Define the GameRoom object methods.
-
-
+Wheel * const & GameRoom::getWheel()
+{
+	return this->wheelHandle;
+}

@@ -24,7 +24,7 @@ struct GameRoom
 	~GameRoom();
 
 	// Define the GameRoom class methods.
-
+	Wheel * const & getWheel();
 private:
 	//int GameRoomID;	// may be unnecessary
 	GameSession * gameSessionHandle;

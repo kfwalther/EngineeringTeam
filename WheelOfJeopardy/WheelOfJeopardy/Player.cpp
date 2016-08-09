@@ -32,7 +32,8 @@ void Player::joinGame(GameSession * const & gameSession)
 
 void Player::spinWheel(GameSession * const & gameSession)
 {
-
+	gameSession->getGameRoom()->getWheel()->getSector(-1);
+	//gameSession->getGameRoom()->getWheel()->getSector(-1).Action(this);
 }
 
 void Player::useFreeTurnToken()

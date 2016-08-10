@@ -8,8 +8,11 @@
  * @ingroup WheelOfJeopardy
  */
 #include <queue>
+#include <iostream>
 #include "Sector.h"
 #include "Question.h"
+#include <string>
+
 
 class QCategory : public Sector
 {
@@ -21,9 +24,11 @@ public:
 	~QCategory();
 
 	/** Define the functions to override the virtual Sector methods. */
-	void Action() override {
-		// TODO: How will Action return type be compatible with QCategory and SCategory actions?
-		//this->getQuestionInfo();
+	void Action(Player * player) override;// {
+//		player->setScore(3);
+//	}
+	std::string Action() override{	//workaround int return type
+		return this->getCategoryName();
 	}
 
 	bool isEmpty() override {

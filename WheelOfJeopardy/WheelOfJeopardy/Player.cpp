@@ -30,10 +30,37 @@ void Player::joinGame(GameSession * const & gameSession)
 	gameSession->join(this);
 }
 
-void Player::spinWheel(GameSession * const & gameSession)
+void Player::spinWheel()
 {
-	gameSession->getGameRoom()->getWheel()->getSector(-1);
-	//gameSession->getGameRoom()->getWheel()->getSector(-1).Action(this);
+	//getSector(-1) retrieves a random sector
+	this->gameSessionHandle->getGameRoom()->getWheel()->getSector(0)->Action(this);
+
+
+	/*std::string sector = this->gameSessionHandle->getGameRoom()->getWheel()->getSector(-1)->Action();//workaround return string type
+	if (sector == "Bankrupt") {
+		this->setScore(0);
+		this->setFreeTurnToken(0);
+	} else if (sector == "Lose Turn") {
+		if(this->totalTokens > 0){
+			//prompt to use token
+			//if yes
+			//	this->useFreeTurnToken();
+		}
+
+	} else if (sector == "Free Turn") {
+		this->totalTokens++;
+	} else if (sector == "Player Choice") {
+		this->chooseCategory();
+	} else if (sector == "Opponent Choice") {
+		//switch to other player
+		this->chooseCategory();
+	} else if (sector == "Spin Again") {
+		this->spinWheel();
+	}
+	//WRST ends here*/
+
+
+
 }
 
 void Player::useFreeTurnToken()
@@ -51,7 +78,7 @@ void Player::calculateScore(int const value)
 
 void Player::chooseCategory()
 {
-
+	this->gameSessionHandle->getGameRoom()->getWheel()->listCategories();
 }
 
 void Player::submitAnswer()

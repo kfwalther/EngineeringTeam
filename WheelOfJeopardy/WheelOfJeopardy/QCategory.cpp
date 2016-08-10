@@ -8,6 +8,7 @@
 #include "QCategory.h"
 #include "parser.h"
 #include "Question.h"
+#include "Player.h"
 
 
 QCategory::QCategory(std::string const & categoryName)
@@ -26,6 +27,11 @@ void QCategory::initialize(std::string const & csv)
 	this->sectorName = csv;
 	this->sectorType = 1;		// 1 == QCategory, 2 == SCategory
 	delete Parse;
+}
+
+void QCategory::Action(Player * player) {
+	this->getQuestionInfo().getQuestion();//incomplete, needs to be passed to UI so player one can see the question
+
 }
 
 Question QCategory::getQuestionInfo()

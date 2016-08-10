@@ -22,7 +22,7 @@ struct Player
 	// Define the Player object methods.
 	void createGame();
 	void joinGame(GameSession * const & gameSession);
-	void spinWheel(GameSession * const & gameSession);
+	void spinWheel();
 	void useFreeTurnToken();
 	void calculateScore(int const value);
 	void chooseCategory();

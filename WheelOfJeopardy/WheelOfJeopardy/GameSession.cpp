@@ -13,6 +13,11 @@
 GameSession::GameSession()
 {
 	this->gameRoomHandle = new GameRoom();
+	this->players = new GameSession::PlayerListType;
+	this->round=1;
+	this->sessionID=GameSession::uniqueID;
+	GameSession::uniqueID++;
+
 }
 
 GameSession::~GameSession()
@@ -23,6 +28,8 @@ GameSession::~GameSession()
 	}
 }
 
+int GameSession::uniqueID=0;
+
 /** Functional methods. */
 void GameSession::initiateGameplay()
 {
@@ -32,14 +39,19 @@ void GameSession::terminateGameplay()
 }
 void GameSession::changeTurns()
 {
+	this->players->reverse();
 }
 void GameSession::join(Player *player)
 {
-	playerList.push_back(player);
-
+	this->players->push_back(player);
 }
 GameRoom * const & GameSession::getGameRoom()
 {
 	return this->gameRoomHandle;
+}
+
+GameSession::PlayerListType & GameSession::getPlayers()
+{
+	return *(this->players);
 }
 

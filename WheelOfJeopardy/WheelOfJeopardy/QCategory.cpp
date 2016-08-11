@@ -29,7 +29,7 @@ void QCategory::initialize(std::string const & csv)
 	delete Parse;
 }
 
-void QCategory::Action(Player * player) {
+void QCategory::Action(GameSession * session) {
 	this->getQuestionInfo().getQuestion();//incomplete, needs to be passed to UI so player one can see the question
 
 }

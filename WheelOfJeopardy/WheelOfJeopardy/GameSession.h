@@ -21,6 +21,8 @@ struct Player;
 struct GameSession
 {
 	// Alias the list of Player objects attribute.
+	//first element will always point to current player
+	//second element will always point to other player.
 	typedef std::list<Player *> PlayerListType;
 
 	// Define the constructor/destructor.
@@ -33,9 +35,11 @@ struct GameSession
 	void changeTurns();
 	void join(Player *player);
 	GameRoom * const & getGameRoom();
+	GameSession::PlayerListType & getPlayers();
 protected:
+	static int uniqueID;//ensures sessionID is unique
 	int sessionID;
-	PlayerListType playerList;
+	PlayerListType * players;
 	// currentPlayer value matches Player.playerID for current player.
 	int currentPlayer;
 	int otherPlayer;

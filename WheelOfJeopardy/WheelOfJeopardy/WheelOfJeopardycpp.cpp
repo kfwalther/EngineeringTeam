@@ -23,7 +23,10 @@ void main()
 	// Let's test construction of these classes.
 	Player * kevin = new Player("Kevin");
 	kevin->createGame();
-	kevin->spinWheel();
+	Player * dan = new Player("Dan");
+	dan->joinGame(kevin);
+//	dan->joinGame();
+	//kevin->spinWheel();
 
 	//// Define a queue container of question objects.
 	//queue<Question> Q;

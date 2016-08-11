@@ -9,7 +9,7 @@
  */
 
 #include <string>
-struct Player;//{void setScore(int x){}}; //forward declaration
+struct GameSession;//forward declaration
 
 struct Sector
 {
@@ -17,8 +17,7 @@ struct Sector
 	//virtual ~Sector();
 
 	/** Functional methods. (Pure-virtual) */
-	virtual void Action(Player *) = 0;
-	virtual std::string Action() = 0;//workaround int return type
+	virtual void Action(GameSession *) = 0;
 	virtual bool isEmpty() = 0;
 	//virtual std::string toString() = 0;
 	int const getType() {

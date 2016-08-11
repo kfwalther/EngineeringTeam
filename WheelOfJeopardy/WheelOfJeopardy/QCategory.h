@@ -24,12 +24,7 @@ public:
 	~QCategory();
 
 	/** Define the functions to override the virtual Sector methods. */
-	void Action(Player * player) override;// {
-//		player->setScore(3);
-//	}
-	std::string Action() override{	//workaround int return type
-		return this->getCategoryName();
-	}
+	void Action(GameSession * session) override;
 
 	bool isEmpty() override {
 		return this->categoryQuestions.empty();

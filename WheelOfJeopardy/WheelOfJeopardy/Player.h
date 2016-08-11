@@ -21,7 +21,7 @@ struct Player
 
 	// Define the Player object methods.
 	void createGame();
-	void joinGame(GameSession * const & gameSession);
+	void joinGame(Player * hostPlayer);
 	void spinWheel();
 	void useFreeTurnToken();
 	void calculateScore(int const value);
@@ -29,7 +29,10 @@ struct Player
 	void submitAnswer();
 	void setScore(int const value);
 	void setFreeTurnToken(int const value);
+	void addFreeTurnToken();
+	bool hasFreeTurnToken();
 private:
+	static int uniqueID; //ensures playerID is unique
 	int playerID;
 	std::string username;
 	double score;

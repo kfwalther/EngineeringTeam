@@ -33,6 +33,5 @@ private:
 	Wheel * wheelHandle;
 	GameBoard * gameBoardHandle;
 	int spins; //number of wheel spins (start at 50 and decrement)
-	int round; //2 rounds
 };
 

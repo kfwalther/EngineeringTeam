@@ -6,6 +6,7 @@
 */
 #include "Question.h"
 #include <string>
+#include <iostream>//testcode
 
 
 Question::Question()
@@ -19,9 +20,11 @@ Question::Question(std::string const & question, std::string const & answer, int
 	pointValue = points;
 	// Initialize the timer for the question.
 	// TODO: Check if this is the correct number of seconds...
-	timer = 30;
+	// Resonse: Assignment does not specificy
+	timer = 10;
 	this->available = true;
 }
+
 
 /** Getter/setter methods. */
 std::string Question::getAnswer(void)
@@ -31,6 +34,7 @@ std::string Question::getAnswer(void)
 
 std::string Question::getQuestion(void)
 {
+	startTime = std::time(nullptr);
 	return questionContent;
 }
 
@@ -53,9 +57,14 @@ void Question::setQuestion(std::string q)
 bool Question::checkAnswer(std::string const & playerAnswer)
 {
 	// TODO: Make this a little more robust, account for capitalizations, etc...
-	if (playerAnswer == this->answerContent) {
+	std::time_t endTime = std::time(nullptr);
+	if (playerAnswer == this->answerContent && endTime-startTime > this->timer) {
+		// TODO: Convert time printed here to seconds.
+		std::cout << "Correct! Time remaining was: " << endTime - startTime << std::endl;//testcode
 		return true;
 	} else {
+		std::cout << "Wrong! Correct answer was: " << this->answerContent<< std::endl;//testcode
+		this->pointValue *= -1;	//if answered incorrectly, point value is now negative
 		return false;
 	}
 }

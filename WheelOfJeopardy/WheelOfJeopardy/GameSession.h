@@ -43,7 +43,7 @@ protected:
 	// currentPlayer value matches Player.playerID for current player.
 	int currentPlayer;
 	int otherPlayer;
-	int round;
+	int rounds;
 	GameRoom * gameRoomHandle;
 	// Still need to define the UserInterface class.
 	//UserInterface * userInterfaceHandle;

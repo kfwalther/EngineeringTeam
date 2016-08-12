@@ -20,13 +20,12 @@ using namespace std;
  */
 void main()
 {
-	// Let's test construction of these classes.
 	Player * kevin = new Player("Kevin");
 	kevin->createGame();
 	Player * dan = new Player("Dan");
 	dan->joinGame(kevin);
-//	dan->joinGame();
-	//kevin->spinWheel();
+	//Once the second player joins a game, the GameSession::InitializeGameplay() loop begins
+	
 
 	//// Define a queue container of question objects.
 	//queue<Question> Q;

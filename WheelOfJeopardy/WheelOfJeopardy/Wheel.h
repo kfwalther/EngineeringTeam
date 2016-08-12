@@ -28,10 +28,12 @@ struct Wheel
 	~Wheel();
 
 	// Define the Wheel object methods.
-	Sector * const & getSector(int const sectorIndex);
+	Sector * const & Spin(int const sectorIndex); //Spin Specific Sector
+	Sector * const & Spin();//Spin Random Sector
 	Wheel::SectorVectorType const & getSectors();
 	int const getSize();
 	Wheel::StringVectorType const & listCategories();
+	bool const isSpinnable();
 private:
 	int wheelID;
 	int counter;

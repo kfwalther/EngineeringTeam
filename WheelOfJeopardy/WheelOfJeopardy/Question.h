@@ -1,5 +1,6 @@
 #pragma once
 #include <string>
+#include <ctime>
 
 /**
  * @class Question
@@ -28,6 +29,7 @@ private:
 	/** Define the Question class attributes. */
 	std::string questionContent;
 	std::string answerContent;
+	std::time_t startTime;
 	int pointValue;
 	int timer;
 	bool available;

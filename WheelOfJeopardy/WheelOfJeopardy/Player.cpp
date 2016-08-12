@@ -33,18 +33,30 @@ void Player::createGame()
 	this->joinGame(this);
 }
 
+int Player::getScore()
+{
+	return this->score;
+}
+
 void Player::joinGame(Player * host)
 {
 	this->gameSessionHandle=host->gameSessionHandle;
 	this->gameSessionHandle->join(this);
 }
-
+/*//Old methods, superceded by Wheel::Spin()
 void Player::spinWheel()
 {
-	//getSector(-1) retrieves a random sector
-	this->gameSessionHandle->getGameRoom()->getWheel()->getSector(-1)->Action(this->gameSessionHandle);
-	
+	//Spin the Wheel to get a random Sector
+	this->gameSessionHandle->getGameRoom()->getWheel()->Spin()->Action(this->gameSessionHandle);
+}
 
+void Player::spinWheel(int x)//testcode to force where the wheel spins to
+{
+	this->gameSessionHandle->getGameRoom()->getWheel()->Spin(x)->Action(this->gameSessionHandle);
+}
+*/
+std::string Player::getName() {
+	return this->username;
 }
 
 bool Player::hasFreeTurnToken(){
@@ -54,10 +66,9 @@ void Player::useFreeTurnToken()
 {
 	// Decrement token count. 
 	this->totalTokens--;
-	this->spinWheel();
 }
 
-void Player::calculateScore(int const value)
+void Player::changeScore(int const value)
 {
 	// Use this method to add positive or negative points to player's score.
 	this->score += value;
@@ -66,6 +77,12 @@ void Player::calculateScore(int const value)
 void Player::chooseCategory()
 {
 	this->gameSessionHandle->getGameRoom()->getWheel()->listCategories();//returns a vector of strings, needs to be pushed to UI
+	//TODO
+	//int x = user's selection
+	//if x is between 0 and 5 (inclusive) and that category still has open questions
+		//this->gameSessionHandle->getGameRoom()->getWheel()->Spin(x)->Action(this->gameSessionHandle);
+	//else
+		//stupid user! pick a real category
 }
 
 void Player::submitAnswer()

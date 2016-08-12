@@ -16,11 +16,13 @@
 // Define the constructor and destructor.
 Wheel::Wheel()
 {
-	this->wheelSize = 12;
-	this->sectors = new Wheel::SectorVectorType;
-	this->categories = new Wheel::StringVectorType;
-	// Create the 12 wheel sectors.
-	// TODO: Should the ordering of these be randomized?
+	this->wheelSize = 12;	//number of different sectors
+	this->counter = 5; //number of wheel spins //testcode, switch to 50 for realcode
+	this->sectors = new Wheel::SectorVectorType;	//Vector containing all sectors
+	this->categories = new Wheel::StringVectorType;	//Vector containing the names of the sectors
+	srand(time(NULL));
+	// Create the 12 wheel sectors
+	//TODO use a for loop and Question
 	this->sectors->push_back(new QCategory("category1"));
 	this->categories->push_back("category1");
 	this->sectors->push_back(new QCategory("category2"));
@@ -52,19 +54,25 @@ Wheel::~Wheel()
 }
 
 // Define the Wheel object methods.
-Sector * const & Wheel::getSector(int const sectorIndex)
+Sector * const & Wheel::Spin(int const sectorIndex)
 {
-	if ((sectorIndex >= 0) && (sectorIndex < this->wheelSize)) {
+	//TODO only allow QSectors that still have valid questions be picked
+	if ((sectorIndex >= 0) && (sectorIndex < this->wheelSize)) {//get nth sector where n=sectorIndex
 		return (sectors->at(sectorIndex));
-	} else if(sectorIndex==-1) {//get random Sector
-		 srand (time(NULL));
-		 int randomIndex;
-		 randomIndex = rand() % this->wheelSize;
-		return (sectors->at(randomIndex));
 	} else {
 		std::cerr << "Invalid index provided." << std::endl;
-		return (sectors->at(0));
+		return (sectors->at(0));//this should probably be null or something else
 	}
+}
+
+Sector * const & Wheel::Spin()
+{
+	//TODO only allow QSectors that still have valid questions be picked
+	//get random Sector
+		int randomIndex;
+		randomIndex = rand() % this->wheelSize;
+		this->counter--;
+		return (sectors->at(randomIndex));
 }
 
 Wheel::SectorVectorType const & Wheel::getSectors()
@@ -72,10 +80,18 @@ Wheel::SectorVectorType const & Wheel::getSectors()
 	return *(this->sectors);
 }
 
-int const Wheel::getSize() {
-	return this->wheelSize;
+//Checks the spin counter and if all QCategory Questions have been answered
+bool const Wheel::isSpinnable() {
+	//TODO if all QCategory Questions have been answered, return false
+	return (this->counter >= 0);
 }
 
+int const Wheel::getSize() {
+	//return this->wheelSize;
+	return this->counter+1;//testcode, should swap with return statement above
+}
+
+//Returns a vector of strings containing the names of all categories
 Wheel::StringVectorType const & Wheel::listCategories()
 {
 		return *(this->categories);

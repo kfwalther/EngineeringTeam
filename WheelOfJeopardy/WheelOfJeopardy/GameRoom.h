@@ -32,6 +32,5 @@ private:
 	//GameFrame * gameFrameHandle;
 	Wheel * wheelHandle;
 	GameBoard * gameBoardHandle;
-	int spins; //number of wheel spins (start at 50 and decrement)
 };
 

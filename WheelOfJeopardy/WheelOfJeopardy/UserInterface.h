@@ -13,6 +13,7 @@
 
 #include "GameSession.h"
 #include "Player.h"
+#include "Sector.h"
 
 class UserInterface
 {
@@ -27,15 +28,19 @@ public:
 	virtual std::vector<std::string> listGames();*/
 	virtual void chooseCategory(int category);
 	virtual bool submitAnswer(int answer);
-	virtual void spinWheel();
 	virtual bool useFreeTurnToken();
 	virtual void endGame();
 	virtual std::vector<std::string> listCategories();
 	virtual bool startGame();
 	
-private:
+	// Pure virtual functions
+	virtual SectorType spinWheel() = 0;
+
+protected:
 	GameSession m_session;
-	Player m_player1;
-	Player m_player2;
+	bool m_gameStarted;
+	bool m_exit;
+	bool m_endGame;
+	std::vector<Player*> m_players;
 };
 

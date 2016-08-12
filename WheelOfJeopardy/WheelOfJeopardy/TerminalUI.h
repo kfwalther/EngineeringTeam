@@ -13,6 +13,8 @@
 
 #include "UserInterface.h"
 
+#include "Sector.h"
+
 class TerminalUI : UserInterface
 {
 public:
@@ -26,16 +28,14 @@ public:
 	virtual std::vector<std::string> listGames();*/
 	virtual void chooseCategory(int category);
 	virtual bool submitAnswer(int answer);
-	virtual void spinWheel();
+	virtual SectorType spinWheel();
 	virtual bool useFreeTurnToken();
 	virtual void endGame();
 	virtual std::vector<std::string> listCategories();
 	virtual bool startGame();
 	virtual void run();
 
+	virtual void promptGameLoop();
 	virtual void promptPreGame();
-
-private:
-	bool m_gameStarted;
-	bool m_exit;
+	virtual void displayPlayerInfo();
 };

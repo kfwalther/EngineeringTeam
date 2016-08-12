@@ -9,15 +9,22 @@
 
 UserInterface::UserInterface()
 	: m_session(),
-	  m_player1("Player 1"),
-	  m_player2("Player 2")
+	  m_gameStarted(false),
+	  m_exit(false),
+	  m_endGame(false)
 {
-
+	m_players.push_back(new Player("Player 1"));
+	m_players.push_back(new Player("Player 2"));
 }
 
 UserInterface::~UserInterface()
 {
+	std::vector<Player*>::iterator iter;
 
+	for (iter = m_players.begin(); iter != m_players.end(); ++iter)
+	{
+		delete *iter;
+	}
 }
 
 /*
@@ -40,12 +47,15 @@ std::vector<std::string> UserInterface::listGames()
 
 bool UserInterface::startGame()
 {
-	m_session.join(&m_player1);
-	m_session.join(&m_player2);
+	std::vector<Player*>::iterator iter;
 
-	m_session.initiateGameplay();
+	for (iter = m_players.begin(); iter != m_players.end(); ++iter)
+		m_session.join(*iter);
 
-	return false;
+	if (m_session.initiateGameplay())
+		m_gameStarted = true;
+
+	return m_gameStarted;
 }
 
 void UserInterface::chooseCategory(int category)
@@ -58,11 +68,6 @@ bool UserInterface::submitAnswer(int answer)
 	return false;
 }
 
-void UserInterface::spinWheel()
-{
-
-}
-
 bool UserInterface::useFreeTurnToken()
 {
 	return false;
@@ -70,7 +75,7 @@ bool UserInterface::useFreeTurnToken()
 
 void UserInterface::endGame()
 {
-
+	m_endGame = true;
 }
 
 std::vector<std::string> UserInterface::listCategories()

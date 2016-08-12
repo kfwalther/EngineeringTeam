@@ -11,6 +11,8 @@
 #include <string>
 struct GameSession;//forward declaration
 
+enum class SectorType { CATEGORY, LOSE_TURN, FREE_TURN, BANKRUPT, PLAYER_CHOICE, OPP_CHOICE, SPIN_AGAIN };
+
 struct Sector
 {
 	//Sector(std::string const sectorName);

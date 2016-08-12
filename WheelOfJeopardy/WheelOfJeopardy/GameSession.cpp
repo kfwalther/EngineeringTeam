@@ -31,7 +31,7 @@ GameSession::~GameSession()
 int GameSession::uniqueID=0;
 
 /** Functional methods. */
-void GameSession::initiateGameplay()
+bool GameSession::initiateGameplay()
 {
 	for (int i = 0; i < this->rounds; i++) {
 		while (this->gameRoomHandle->getWheel()->isSpinnable()) {
@@ -41,9 +41,10 @@ void GameSession::initiateGameplay()
 			this->getGameRoom()->getWheel()->Spin()->Action(this);
 		}
 		//delete the old GameRoom, and create a new one for round 2.
-		this->gameRoomHandle = new GameRoom();
-		
+		this->gameRoomHandle = new GameRoom();	
 	}
+
+	return true;
 }
 void GameSession::terminateGameplay()
 {

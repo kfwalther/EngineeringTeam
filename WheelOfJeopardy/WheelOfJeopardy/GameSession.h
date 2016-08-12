@@ -30,7 +30,7 @@ struct GameSession
 	~GameSession();
 
 	/** Functional methods. */
-	void initiateGameplay();
+	bool initiateGameplay();
 	void terminateGameplay();
 	void changeTurns();
 	void join(Player *player);

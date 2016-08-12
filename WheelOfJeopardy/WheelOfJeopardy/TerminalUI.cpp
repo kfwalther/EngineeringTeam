@@ -2,7 +2,7 @@
 /**
 * @file TerminalUI.cpp
 * @brief This file contains the SCategory class definition.
-* @author Kevin Walther
+* @author Joshua Griffith
 * @date 2016
 */
 #include "TerminalUI.h"
@@ -13,8 +13,6 @@ using std::cout;
 using std::cin;
 
 TerminalUI::TerminalUI()
-	: m_gameStarted(false),
-	: m_exit(false)
 {
 	cout << "*********************************\n";
 	cout << "*       WHEEL OF JEOPARDY       *\n";
@@ -44,8 +42,7 @@ std::vector<std::string> TerminalUI::listGames()
 
 bool TerminalUI::startGame()
 {
-	m_gameStarted = true;
-	return m_gameStarted;
+	return false;
 }
 
 void TerminalUI::chooseCategory(int category)
@@ -58,14 +55,20 @@ bool TerminalUI::submitAnswer(int answer)
 	return false;
 }
 
-void TerminalUI::spinWheel()
+SectorType TerminalUI::spinWheel()
 {
+	cout << "Press enter to spin the wheel: ";
+	
+	// Wait for input
+	cin.get();
 
+	// We want to spin the wheel, this returns a sector, should really be at a top level
+	return SectorType::CATEGORY;// m_session.spinWheel(&m_currentPlayer);
 }
 
 bool TerminalUI::useFreeTurnToken()
 {
-	return false;
+	return false;// m_session.useFreeTurnToken(&m_currentPlayer);
 }
 
 void TerminalUI::endGame()
@@ -77,6 +80,11 @@ std::vector<std::string> TerminalUI::listCategories()
 {
 	std::vector<std::string> temp;
 	return temp;
+}
+
+void TerminalUI::displayPlayerInfo()
+{
+
 }
 
 void TerminalUI::promptPreGame()
@@ -100,7 +108,41 @@ void TerminalUI::promptPreGame()
 	}
 }
 
+void TerminalUI::promptGameLoop()
+{
+	while (!m_endGame && !m_exit)
+	{
+		for (int i = 0; i < m_players.size(); i++)
+		{
+			this->displayPlayerInfo();
+			SectorType sector = this->spinWheel();
+			
+			switch (sector)
+			{
+			case SectorType::CATEGORY:
+				break;
+			case SectorType::LOSE_TURN:
+				break;
+			case SectorType::FREE_TURN:
+				break;
+			case SectorType::BANKRUPT:
+				break;
+			case SectorType::PLAYER_CHOICE:
+				break;
+			case SectorType::OPP_CHOICE:
+				break;
+			case SectorType::SPIN_AGAIN:
+				break;
+			}
+		}
+	}
+}
+
+
 void TerminalUI::run()
 {
 	this->promptPreGame();
+
+	if (m_gameStarted)
+		this->promptGameLoop();
 }

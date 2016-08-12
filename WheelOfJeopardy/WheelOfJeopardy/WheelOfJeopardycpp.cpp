@@ -11,6 +11,7 @@
 #include "Question.h"
 #include "parser.h"
 #include "Player.h"
+#include "TerminalUI.h"
 
 // Alias the std namespace for convenience.
 using namespace std;
@@ -21,8 +22,12 @@ using namespace std;
 void main()
 {
 	// Let's test construction of these classes.
-	Player * kevin = new Player("Kevin");
-	kevin->createGame();
+	//Player * kevin = new Player("Kevin");
+	//kevin->createGame();
+
+	// Test UI functions
+	TerminalUI userInterface;
+	userInterface.run();
 
 	//// Define a queue container of question objects.
 	//queue<Question> Q;

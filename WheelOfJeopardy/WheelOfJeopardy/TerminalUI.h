@@ -31,9 +31,11 @@ public:
 	virtual void endGame();
 	virtual std::vector<std::string> listCategories();
 	virtual bool startGame();
+	virtual void run();
 
 	virtual void promptPreGame();
 
 private:
-
+	bool m_gameStarted;
+	bool m_exit;
 };

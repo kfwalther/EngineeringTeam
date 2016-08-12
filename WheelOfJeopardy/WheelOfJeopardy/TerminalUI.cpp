@@ -13,6 +13,8 @@ using std::cout;
 using std::cin;
 
 TerminalUI::TerminalUI()
+	: m_gameStarted(false),
+	: m_exit(false)
 {
 	cout << "*********************************\n";
 	cout << "*       WHEEL OF JEOPARDY       *\n";
@@ -42,7 +44,8 @@ std::vector<std::string> TerminalUI::listGames()
 
 bool TerminalUI::startGame()
 {
-	return false;
+	m_gameStarted = true;
+	return m_gameStarted;
 }
 
 void TerminalUI::chooseCategory(int category)
@@ -78,5 +81,26 @@ std::vector<std::string> TerminalUI::listCategories()
 
 void TerminalUI::promptPreGame()
 {
+	int selection = 0;
 
+	cout << "Select an option:" << "\n";
+	cout << "1. Start new game (hotseat)" << "\n";
+	cout << "2. Exit" << "\n";
+	cout << "Selection: ";
+	cin >> selection;
+
+	switch (selection)
+	{
+	case 1:
+		this->startGame();
+		break;
+	case 2:
+		m_exit = true;
+		break;
+	}
+}
+
+void TerminalUI::run()
+{
+	this->promptPreGame();
 }

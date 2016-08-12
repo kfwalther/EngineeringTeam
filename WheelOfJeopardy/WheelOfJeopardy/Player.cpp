@@ -13,36 +13,64 @@
 Player::Player(std::string const playerName)
 {
 	this->username = playerName;
+	this->score=0;
+	this->isJoinedGame=false;
+	this->totalTokens=0;
+	this->playerID=Player::uniqueID;
+	Player::uniqueID++;
 }
 
 Player::~Player()
 {
 }
 
+int Player::uniqueID=0;
+
 // Define the Player object methods.
 void Player::createGame()
 {
 	this->gameSessionHandle = new GameSession();
+	this->joinGame(this);
 }
 
-void Player::joinGame(GameSession * const & gameSession)
+int Player::getScore()
 {
-	gameSession->join(this);
+	return this->score;
 }
 
-void Player::spinWheel(GameSession * const & gameSession)
+void Player::joinGame(Player * host)
 {
-
+	// Give the current player the gameSessionHandle (created by the host).
+	this->gameSessionHandle=host->gameSessionHandle;
+	// Join the current player to the gameSession.
+	this->gameSessionHandle->join(this);
+}
+/*//Old methods, superceded by Wheel::Spin()
+void Player::spinWheel()
+{
+	//Spin the Wheel to get a random Sector
+	this->gameSessionHandle->getGameRoom()->getWheel()->Spin()->Action(this->gameSessionHandle);
 }
 
+void Player::spinWheel(int x)//testcode to force where the wheel spins to
+{
+	this->gameSessionHandle->getGameRoom()->getWheel()->Spin(x)->Action(this->gameSessionHandle);
+}
+*/
+std::string Player::getName() {
+	return this->username;
+}
+
+bool Player::hasFreeTurnToken(){
+	return (this->totalTokens>0 ? true : false);
+}
 void Player::useFreeTurnToken()
 {
-	/// Player spins again.
 	// Decrement token count. 
 	this->totalTokens--;
 }
 
-void Player::calculateScore(int const value)
+void Player::changeScore(int const value)
 {
 	// Use this method to add positive or negative points to player's score.
 	this->score += value;
@@ -50,7 +78,13 @@ void Player::calculateScore(int const value)
 
 void Player::chooseCategory()
 {
-
+	this->gameSessionHandle->getGameRoom()->getWheel()->listCategories();//returns a vector of strings, needs to be pushed to UI
+	//TODO
+	//int x = user's selection
+	//if x is between 0 and 5 (inclusive) and that category still has open questions
+		//this->gameSessionHandle->getGameRoom()->getWheel()->Spin(x)->Action(this->gameSessionHandle);
+	//else
+		//stupid user! pick a real category
 }
 
 void Player::submitAnswer()
@@ -67,4 +101,9 @@ void Player::setScore(int const value)
 void Player::setFreeTurnToken(int const value)
 {
 	this->totalTokens = value;
+}
+
+void Player::addFreeTurnToken()
+{
+	this->totalTokens++;
 }

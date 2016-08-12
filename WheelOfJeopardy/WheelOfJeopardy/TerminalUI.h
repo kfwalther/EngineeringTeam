@@ -1,25 +1,24 @@
 #pragma once
 
 /**
- * @class UserInterface
- * @brief WoJ UserInterface object.
- * @author Kevin Walther
- * @date 2016
- * @ingroup WheelOfJeopardy
- */
+* @class TerminalUI
+* @brief WoJ TerminalUI object.
+* @author Joshua Griffith
+* @date 2016
+* @ingroup WheelOfJeopardy
+*/
 
 #include <string>
 #include <vector>
 
-#include "GameSession.h"
-#include "Player.h"
+#include "UserInterface.h"
 
-class UserInterface
+class TerminalUI : UserInterface
 {
 public:
 	// Define the constructor and destructor.
-	UserInterface();
-	virtual ~UserInterface();
+	TerminalUI();
+	virtual ~TerminalUI();
 
 	// Define the UserInterface object methods.
 	/*virtual bool createGame();
@@ -32,10 +31,9 @@ public:
 	virtual void endGame();
 	virtual std::vector<std::string> listCategories();
 	virtual bool startGame();
-	
-private:
-	GameSession m_session;
-	Player m_player1;
-	Player m_player2;
-};
 
+	virtual void promptPreGame();
+
+private:
+
+};

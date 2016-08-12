@@ -154,6 +154,8 @@
     <ClCompile Include="QCategory.cpp" />
     <ClCompile Include="Question.cpp" />
     <ClCompile Include="SCategory.cpp" />
+    <ClCompile Include="TerminalUI.cpp" />
+    <ClCompile Include="UserInterface.cpp" />
     <ClCompile Include="Wheel.cpp" />
     <ClCompile Include="WheelOfJeopardycpp.cpp" />
     <ClCompile Include="WoJ.cpp" />
@@ -168,6 +170,7 @@
     <ClInclude Include="Question.h" />
     <ClInclude Include="SCategory.h" />
     <ClInclude Include="Sector.h" />
+    <ClInclude Include="TerminalUI.h" />
     <ClInclude Include="UserInterface.h" />
     <ClInclude Include="Wheel.h" />
     <ClInclude Include="WoJ.h" />

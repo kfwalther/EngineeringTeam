@@ -51,7 +51,10 @@
     <ClCompile Include="WoJ.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="category.cpp">
+    <ClCompile Include="UserInterface.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="TerminalUI.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -95,7 +98,7 @@
     <ClInclude Include="WoJ.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="category.h">
+    <ClInclude Include="TerminalUI.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

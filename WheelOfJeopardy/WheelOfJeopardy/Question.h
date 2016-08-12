@@ -31,7 +31,7 @@ private:
 	std::string answerContent;
 	std::time_t startTime;
 	int pointValue;
-	int timer;
+	double timer;
 	bool available;
 };
 

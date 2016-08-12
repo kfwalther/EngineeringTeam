@@ -58,10 +58,9 @@ void QCategory::Action(GameSession * session) {
 
 }
 
-Question QCategory::getQuestionInfo()
+Question & QCategory::getQuestionInfo()
 {
-	Question Q = categoryQuestions.front();
-	return Q;
+	return categoryQuestions.front();
 }
 
 std::string QCategory::getCategoryName()

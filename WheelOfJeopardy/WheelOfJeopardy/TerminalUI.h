@@ -28,13 +28,13 @@ public:
 	virtual std::vector<std::string> listGames();*/
 	virtual void chooseCategory(int category);
 	virtual bool submitAnswer(int answer);
-	virtual SectorType spinWheel();
-	virtual bool useFreeTurnToken();
 	virtual void endGame();
 	virtual std::vector<std::string> listCategories();
 	virtual void run();
 
-	virtual void promptGameLoop();
 	virtual void promptPreGame();
 	virtual void displayPlayerInfo();
+
+	// User Interface Handlers
+	virtual void UI_SpinWheel();
 };

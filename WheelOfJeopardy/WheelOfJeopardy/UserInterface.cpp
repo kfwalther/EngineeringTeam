@@ -27,6 +27,62 @@ UserInterface::~UserInterface()
 	}
 }
 
+void UserInterface::runGameLoop()
+{
+	while (!m_endGame)
+	{
+		// Let all the players have a turn 
+		for (std::vector<Player*>::iterator iter = m_players.begin(); iter != m_players.end(); ++iter)
+		{
+			// Set the current player turn 
+			m_currentPlayer = *iter;
+
+			// Check if the player lost a turn last round
+			if (!(m_currentPlayer->hasLostTurn()))
+			{
+				this->UI_StartTurn();
+
+				SectorType sectorType = m_session.spinWheel(m_currentPlayer->getId());
+				this->UI_SpinWheel();
+
+				switch (sectorType)
+				{
+				case SectorType::CATEGORY:
+					break;
+				case SectorType::LOSE_TURN:
+					m_currentPlayer->loseTurn();
+					this->UI_LoseTurn();
+					break;
+				case SectorType::FREE_TURN:
+					m_currentPlayer->addFreeTurnToken();
+					this->UI_AddFreeTurn();
+					break;
+				case SectorType::BANKRUPT:
+					// remove points for round
+					// loses turn
+					// no token to regain turn
+					break;
+				case SectorType::PLAYER_CHOICE:
+					// player chooses category
+					break;
+				case SectorType::OPP_CHOICE:
+					// player opponent chooses category
+					break;
+				case SectorType::SPIN_AGAIN:
+					// player must spin again
+					break;
+				default:
+					break;
+				}
+			}
+			else
+			{
+				this->UI_LostTurn();
+			}
+		}
+	}
+}
+
 /*
 // TBD: Hotseat only for now
 bool UserInterface::createGame()
@@ -70,7 +126,7 @@ bool UserInterface::submitAnswer(int answer)
 
 bool UserInterface::useFreeTurnToken()
 {
-	return false;
+	return m_session.useFreeTurnToken(m_currentPlayer->getId());
 }
 
 void UserInterface::endGame()

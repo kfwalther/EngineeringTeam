@@ -112,3 +112,18 @@ int Player::getId()
 {
 	return playerID;
 }
+
+bool Player::hasLostTurn()
+{
+	return m_lostTurn;
+}
+
+void Player::clearLostTurn()
+{
+	m_lostTurn = false;
+}
+
+void Player::loseTurn()
+{
+	m_lostTurn = true;
+}

@@ -32,7 +32,10 @@ struct Player
 	int getScore();
 	void setFreeTurnToken(int const value);
 	void addFreeTurnToken();
+	bool hasLostTurn();
 	bool hasFreeTurnToken();
+	void clearLostTurn();
+	void loseTurn();
 	std::string getName();
 	int getId();
 private:
@@ -42,6 +45,7 @@ private:
 	double score;
 	bool isJoinedGame;
 	int totalTokens;
+	bool m_lostTurn;
 	GameSession * gameSessionHandle;
 };
 

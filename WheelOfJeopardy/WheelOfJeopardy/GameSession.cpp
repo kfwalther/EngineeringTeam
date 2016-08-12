@@ -77,3 +77,8 @@ SectorType GameSession::spinWheel(int playerId)
 {
 	return this->gameRoomHandle->getWheel()->Spin()->getSectorType();
 }
+
+bool useFreeTurnToken(int playerId)
+{
+	return false; 
+}

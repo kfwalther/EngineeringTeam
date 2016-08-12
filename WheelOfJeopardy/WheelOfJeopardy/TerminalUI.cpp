@@ -50,20 +50,12 @@ bool TerminalUI::submitAnswer(int answer)
 	return false;
 }
 
-SectorType TerminalUI::spinWheel()
+void TerminalUI::UI_SpinWheel()
 {
-	cout << "Press enter to spin the wheel: ";
+	cout << "Press any key to spin the wheel: ";
 	
-	// Wait for input
+	// Wait for any input 
 	cin.get();
-
-	// We want to spin the wheel, this returns a sector, should really be at a top level
-	return m_session.spinWheel(m_currentPlayer->getId());
-}
-
-bool TerminalUI::useFreeTurnToken()
-{
-	return false;// m_session.useFreeTurnToken(&m_currentPlayer);
 }
 
 void TerminalUI::endGame()
@@ -103,41 +95,8 @@ void TerminalUI::promptPreGame()
 	}
 }
 
-void TerminalUI::promptGameLoop()
-{
-	while (!m_endGame && !m_exit)
-	{
-		for (int i = 0; i < m_players.size(); i++)
-		{
-			this->displayPlayerInfo();
-			SectorType sector = this->spinWheel();
-			
-			switch (sector)
-			{
-			case SectorType::CATEGORY:
-				break;
-			case SectorType::LOSE_TURN:
-				break;
-			case SectorType::FREE_TURN:
-				break;
-			case SectorType::BANKRUPT:
-				break;
-			case SectorType::PLAYER_CHOICE:
-				break;
-			case SectorType::OPP_CHOICE:
-				break;
-			case SectorType::SPIN_AGAIN:
-				break;
-			}
-		}
-	}
-}
-
 
 void TerminalUI::run()
 {
 	this->promptPreGame();
-
-	if (m_gameStarted)
-		this->promptGameLoop();
 }

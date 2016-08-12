@@ -23,6 +23,8 @@ public:
 	virtual ~UserInterface();
 
 	// Define the UserInterface object methods.
+	virtual void runGameLoop();
+
 	/*virtual bool createGame();
 	virtual bool joinGame(int gameId);
 	virtual std::vector<std::string> listGames();*/
@@ -32,9 +34,13 @@ public:
 	virtual void endGame();
 	virtual std::vector<std::string> listCategories();
 	virtual bool startGame();
-	
-	// Pure virtual functions
-	virtual SectorType spinWheel() = 0;
+
+	// Pure virtual UI handlers
+	virtual void UI_StartTurn() = 0;
+	virtual void UI_LostTurn() = 0;
+	virtual void UI_SpinWheel() = 0;
+	virtual void UI_LoseTurn() = 0;
+	virtual void UI_AddFreeTurn() = 0;
 
 protected:
 	GameSession m_session;

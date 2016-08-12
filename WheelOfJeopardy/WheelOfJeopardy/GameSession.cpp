@@ -73,3 +73,7 @@ GameSession::PlayerListType & GameSession::getPlayers()
 	return *(this->players);
 }
 
+SectorType GameSession::spinWheel(int playerId)
+{
+	return this->gameRoomHandle->getWheel()->Spin()->getSectorType();
+}

@@ -24,6 +24,11 @@ struct Sector
 	int const getType() {
 		return sectorType;
 	}
+
+	SectorType getSectorType()
+	{
+		return SectorType::CATEGORY;
+	}
 protected:
 	int sectorID;
 	std::string sectorName;

@@ -34,6 +34,7 @@ struct Player
 	void addFreeTurnToken();
 	bool hasFreeTurnToken();
 	std::string getName();
+	int getId();
 private:
 	static int uniqueID; //ensures playerID is unique
 	int playerID;

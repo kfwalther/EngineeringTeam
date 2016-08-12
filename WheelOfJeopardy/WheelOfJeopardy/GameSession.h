@@ -36,6 +36,7 @@ struct GameSession
 	void join(Player *player);
 	GameRoom * const & getGameRoom();
 	GameSession::PlayerListType & getPlayers();
+	SectorType spinWheel(int playerId);
 protected:
 	static int uniqueID;//ensures sessionID is unique
 	int sessionID;

@@ -32,7 +32,6 @@ public:
 	virtual bool useFreeTurnToken();
 	virtual void endGame();
 	virtual std::vector<std::string> listCategories();
-	virtual bool startGame();
 	virtual void run();
 
 	virtual void promptGameLoop();

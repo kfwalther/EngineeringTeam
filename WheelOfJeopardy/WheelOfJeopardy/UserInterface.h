@@ -42,5 +42,6 @@ protected:
 	bool m_exit;
 	bool m_endGame;
 	std::vector<Player*> m_players;
+	Player* m_currentPlayer;
 };
 

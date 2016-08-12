@@ -40,11 +40,6 @@ std::vector<std::string> TerminalUI::listGames()
 
 }*/
 
-bool TerminalUI::startGame()
-{
-	return false;
-}
-
 void TerminalUI::chooseCategory(int category)
 {
 
@@ -63,7 +58,7 @@ SectorType TerminalUI::spinWheel()
 	cin.get();
 
 	// We want to spin the wheel, this returns a sector, should really be at a top level
-	return SectorType::CATEGORY;// m_session.spinWheel(&m_currentPlayer);
+	return m_session.spinWheel(m_currentPlayer->getId());
 }
 
 bool TerminalUI::useFreeTurnToken()

@@ -107,3 +107,8 @@ void Player::addFreeTurnToken()
 {
 	this->totalTokens++;
 }
+
+int Player::getId()
+{
+	return playerID;
+}

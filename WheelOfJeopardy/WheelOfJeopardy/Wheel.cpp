@@ -82,8 +82,18 @@ Wheel::SectorVectorType const & Wheel::getSectors()
 
 //Checks the spin counter and if all QCategory Questions have been answered
 bool const Wheel::isSpinnable() {
-	//TODO if all QCategory Questions have been answered, return false
-	return (this->counter >= 0);
+
+	bool noQuestions = true;
+
+	// Iterate through the sectors and check if any QCategory is
+	// empty. When there are no questions remaining noQuestions will
+	// be set to true.
+	for (std::vector<Sector *>::iterator iter = this->sectors->begin(); iter != this->sectors->begin(); ++iter) {
+		if ((*iter)->getType() == 1) {
+			noQuestions &= (*iter)->isEmpty();
+		}
+	}
+	return (!noQuestions | this->counter > 0);
 }
 
 int const Wheel::getSize() {

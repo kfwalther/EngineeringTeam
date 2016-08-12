@@ -87,3 +87,13 @@ void GameSession::bankrupt(int playerId)
 {
 	// do nothing
 }
+
+int GameSession::getWheelSpinsLeft()
+{
+	return this->gameRoomHandle->getWheel()->getSpinsLeft();
+}
+
+int GameSession::getRoundNumber()
+{
+	return 1;
+}

@@ -128,3 +128,8 @@ void Player::loseTurn()
 {
 	m_lostTurn = true;
 }
+
+int Player::getNumTokens()
+{
+	return totalTokens;
+}

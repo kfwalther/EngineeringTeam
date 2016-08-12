@@ -34,6 +34,7 @@ struct Wheel
 	int const getSize();
 	Wheel::StringVectorType const & listCategories();
 	bool const isSpinnable();
+	int getSpinsLeft();
 private:
 	int wheelID;
 	int counter;

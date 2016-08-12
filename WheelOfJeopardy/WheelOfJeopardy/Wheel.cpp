@@ -107,4 +107,7 @@ Wheel::StringVectorType const & Wheel::listCategories()
 	return *(this->categories);
 }
 
-
+int Wheel::getSpinsLeft()
+{
+	return counter;
+}

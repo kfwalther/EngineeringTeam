@@ -38,6 +38,7 @@ struct Player
 	void loseTurn();
 	std::string getName();
 	int getId();
+	int getNumTokens();
 private:
 	static int uniqueID; //ensures playerID is unique
 	int playerID;

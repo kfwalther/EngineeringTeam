@@ -52,6 +52,7 @@ void UserInterface::runGameLoop()
 					switch (sectorType)
 					{
 					case SectorType::CATEGORY:
+						this->UI_PlaceHolder("Category");
 						break;
 					case SectorType::LOSE_TURN:
 						m_currentPlayer->loseTurn();
@@ -66,16 +67,17 @@ void UserInterface::runGameLoop()
 						this->UI_Bankrupt();
 						break;
 					case SectorType::PLAYER_CHOICE:
-						// player chooses category
+						this->UI_PlaceHolder("Player Choice");
 						break;
 					case SectorType::OPP_CHOICE:
-						// player opponent chooses category
+						this->UI_PlaceHolder("Opp Choice");
 						break;
 					case SectorType::SPIN_AGAIN:
 						spinWheel = true;
 						this->UI_SpinAgain();
 						break;
 					default:
+						this->UI_PlaceHolder("Default");
 						break;
 					}
 				}

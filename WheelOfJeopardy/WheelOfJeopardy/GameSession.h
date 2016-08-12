@@ -41,6 +41,8 @@ struct GameSession
 	SectorType spinWheel(int playerId);
 	bool useFreeTurnToken(int playerId);
 	void bankrupt(int playerId);
+	int getWheelSpinsLeft();
+	int getRoundNumber();
 
 protected:
 	static int uniqueID;//ensures sessionID is unique

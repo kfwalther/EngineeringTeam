@@ -55,9 +55,12 @@ void GameSession::changeTurns()
 }
 void GameSession::join(Player *player)
 {
+	// Add the current player to the GameSession. 
 	this->players->push_back(player);
-	if (this->players->size() == 2)//if a second player joins the game
+	// If a second player joins the game, start the game.
+	if (this->players->size() == 2) {
 		this->initiateGameplay();
+	}
 }
 GameRoom * const & GameSession::getGameRoom()
 {

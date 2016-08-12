@@ -94,7 +94,7 @@ int const Wheel::getSize() {
 //Returns a vector of strings containing the names of all categories
 Wheel::StringVectorType const & Wheel::listCategories()
 {
-		return *(this->categories);
+	return *(this->categories);
 }
 
 

@@ -59,6 +59,7 @@ bool Question::checkAnswer(std::string const & playerAnswer)
 	// TODO: Make this a little more robust, account for capitalizations, etc...
 	std::time_t endTime = std::time(nullptr);
 	if (playerAnswer == this->answerContent && endTime-startTime > this->timer) {
+		// TODO: Convert time printed here to seconds.
 		std::cout << "Correct! Time remaining was: " << endTime - startTime << std::endl;//testcode
 		return true;
 	} else {

@@ -40,7 +40,9 @@ int Player::getScore()
 
 void Player::joinGame(Player * host)
 {
+	// Give the current player the gameSessionHandle (created by the host).
 	this->gameSessionHandle=host->gameSessionHandle;
+	// Join the current player to the gameSession.
 	this->gameSessionHandle->join(this);
 }
 /*//Old methods, superceded by Wheel::Spin()

@@ -34,12 +34,12 @@ int GameSession::uniqueID=0;
 bool GameSession::initiateGameplay()
 {
 	for (int i = 0; i < this->rounds; i++) {
-		while (this->gameRoomHandle->getWheel()->isSpinnable()) {
+		/*while (this->gameRoomHandle->getWheel()->isSpinnable()) {
 			std::cout << "Current Player: " << players->front()->getName() << "\tCurrent Score: "<< players->front()->getScore() << "\tFree Tokens: "<< players->front()->hasFreeTurnToken()<< std::endl;//testcode
 			std::cout << "Opposing Player: " << players->back()->getName() << "\tOpposing Score: " << players->back()->getScore() << "\tFree Tokens: " << players->back()->hasFreeTurnToken() << std::endl;//testcode
 			std::string x; std::cout << "Press any key to spin\n"; 	std::getline(std::cin, x); //testcode
 			this->getGameRoom()->getWheel()->Spin()->Action(this);
-		}
+		}*/
 		//delete the old GameRoom, and create a new one for round 2.
 		this->gameRoomHandle = new GameRoom();	
 	}
@@ -78,7 +78,12 @@ SectorType GameSession::spinWheel(int playerId)
 	return this->gameRoomHandle->getWheel()->Spin()->getSectorType();
 }
 
-bool useFreeTurnToken(int playerId)
+bool GameSession::useFreeTurnToken(int playerId)
 {
 	return false; 
+}
+
+void GameSession::bankrupt(int playerId)
+{
+	// do nothing
 }

@@ -42,37 +42,42 @@ void UserInterface::runGameLoop()
 			{
 				this->UI_StartTurn();
 
-				SectorType sectorType = m_session.spinWheel(m_currentPlayer->getId());
-				this->UI_SpinWheel();
-
-				switch (sectorType)
+				bool spinWheel = true;
+				while (spinWheel)
 				{
-				case SectorType::CATEGORY:
-					break;
-				case SectorType::LOSE_TURN:
-					m_currentPlayer->loseTurn();
-					this->UI_LoseTurn();
-					break;
-				case SectorType::FREE_TURN:
-					m_currentPlayer->addFreeTurnToken();
-					this->UI_AddFreeTurn();
-					break;
-				case SectorType::BANKRUPT:
-					// remove points for round
-					// loses turn
-					// no token to regain turn
-					break;
-				case SectorType::PLAYER_CHOICE:
-					// player chooses category
-					break;
-				case SectorType::OPP_CHOICE:
-					// player opponent chooses category
-					break;
-				case SectorType::SPIN_AGAIN:
-					// player must spin again
-					break;
-				default:
-					break;
+					this->UI_SpinWheel();
+					SectorType sectorType = m_session.spinWheel(m_currentPlayer->getId());
+					spinWheel = false;
+
+					switch (sectorType)
+					{
+					case SectorType::CATEGORY:
+						break;
+					case SectorType::LOSE_TURN:
+						m_currentPlayer->loseTurn();
+						this->UI_LoseTurn();		
+						break;
+					case SectorType::FREE_TURN:
+						m_currentPlayer->addFreeTurnToken();
+						this->UI_AddFreeTurn();
+						break;
+					case SectorType::BANKRUPT:
+						m_session.bankrupt(m_currentPlayer->getId());
+						this->UI_Bankrupt();
+						break;
+					case SectorType::PLAYER_CHOICE:
+						// player chooses category
+						break;
+					case SectorType::OPP_CHOICE:
+						// player opponent chooses category
+						break;
+					case SectorType::SPIN_AGAIN:
+						spinWheel = true;
+						this->UI_SpinAgain();
+						break;
+					default:
+						break;
+					}
 				}
 			}
 			else
@@ -109,19 +114,12 @@ bool UserInterface::startGame()
 		m_session.join(*iter);
 
 	if (m_session.initiateGameplay())
+	{
 		m_gameStarted = true;
+		this->runGameLoop();
+	}
 
 	return m_gameStarted;
-}
-
-void UserInterface::chooseCategory(int category)
-{
-
-}
-
-bool UserInterface::submitAnswer(int answer)
-{
-	return false;
 }
 
 bool UserInterface::useFreeTurnToken()
@@ -132,10 +130,4 @@ bool UserInterface::useFreeTurnToken()
 void UserInterface::endGame()
 {
 	m_endGame = true;
-}
-
-std::vector<std::string> UserInterface::listCategories()
-{
-	std::vector<std::string> temp;
-	return temp;
 }

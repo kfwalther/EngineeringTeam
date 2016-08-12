@@ -11,6 +11,7 @@
 
 // Define the constructor and destructor.
 Player::Player(std::string const playerName)
+	: m_lostTurn(false)
 {
 	this->username = playerName;
 	this->score=0;

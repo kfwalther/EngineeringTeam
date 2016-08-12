@@ -40,6 +40,7 @@ struct GameSession
 	// Top level, exposed to UI
 	SectorType spinWheel(int playerId);
 	bool useFreeTurnToken(int playerId);
+	void bankrupt(int playerId);
 
 protected:
 	static int uniqueID;//ensures sessionID is unique

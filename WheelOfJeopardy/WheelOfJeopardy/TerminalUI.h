@@ -34,7 +34,14 @@ public:
 
 	virtual void promptPreGame();
 	virtual void displayPlayerInfo();
+	virtual int promptSelect(std::vector<std::string>& options);
 
 	// User Interface Handlers
+	virtual void UI_StartTurn();
+	virtual void UI_LostTurn();
 	virtual void UI_SpinWheel();
+	virtual void UI_LoseTurn();
+	virtual void UI_AddFreeTurn();
+	virtual void UI_Bankrupt();
+	virtual void UI_SpinAgain();
 };

@@ -19,8 +19,6 @@ Question::Question(std::string const & question, std::string const & answer, int
 	answerContent = answer;
 	pointValue = points;
 	// Initialize the timer for the question.
-	// TODO: Check if this is the correct number of seconds...
-	// Resonse: Assignment does not specificy
 	timer = 10;
 	this->available = true;
 }
@@ -54,11 +52,15 @@ void Question::setQuestion(std::string q)
 }
 
 /** Functional methods. */
-bool Question::checkAnswer(std::string const & playerAnswer)
+bool Question::checkAnswer(std::string & playerAnswer)
 {
-	// TODO: Make this a little more robust, account for capitalizations, etc...
 	double const elapsedTime = std::difftime(std::time(nullptr), this->startTime);
-	if ((playerAnswer == this->answerContent) && (elapsedTime < this->timer)) {
+	// Make answers to compare all lowercase.
+	std::string correctAnswer = this->answerContent;
+	std::transform(playerAnswer.begin(), playerAnswer.end(), playerAnswer.begin(), ::tolower);
+	std::transform(correctAnswer.begin(), correctAnswer.end(), correctAnswer.begin(), ::tolower);
+	// Compare the player answer against the correct answer, and check time.
+	if ((playerAnswer == correctAnswer) && (elapsedTime < this->timer)) {
 		std::cout << "Correct! Time remaining was: " << std::max(0.0, (this->timer - elapsedTime)) << " seconds" << std::endl;//testcode
 		return true;
 	} else {

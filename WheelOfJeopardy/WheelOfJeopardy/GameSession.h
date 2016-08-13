@@ -10,6 +10,7 @@
 
 #include <list>
 #include <cstddef>
+#include <tuple>
 
 #include "GameRoom.h"
 //#include "UserInterface.h"
@@ -38,7 +39,7 @@ struct GameSession
 	GameSession::PlayerListType & getPlayers();
 
 	// Top level, exposed to UI
-	SectorType spinWheel(int playerId);
+	std::tuple<SectorType, std::string> spinWheel(int playerId);
 	bool useFreeTurnToken(int playerId);
 	void bankrupt(int playerId);
 	int getWheelSpinsLeft();

@@ -25,9 +25,6 @@ public:
 	// Define the UserInterface object methods.
 	virtual void runGameLoop();
 
-	/*virtual bool createGame();
-	virtual bool joinGame(int gameId);
-	virtual std::vector<std::string> listGames();*/
 	virtual bool useFreeTurnToken();
 	virtual void endGame();
 	virtual bool startGame();
@@ -36,6 +33,8 @@ public:
 	virtual void UI_StartTurn() = 0;
 	virtual void UI_LostTurn() = 0;
 	virtual void UI_SpinWheel() = 0;
+	virtual bool UI_AskUseToken() = 0;
+	virtual void UI_UseToken() = 0;
 	virtual void UI_LoseTurn() = 0;
 	virtual void UI_AddFreeTurn() = 0;
 	virtual void UI_Bankrupt() = 0;

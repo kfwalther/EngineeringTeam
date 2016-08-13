@@ -42,21 +42,40 @@ void UserInterface::runGameLoop()
 			{
 				this->UI_StartTurn();
 
+				//
+				// All UI logic pertaining to the wheel is handled in the following while loop
+				//
+				bool answerCategory = false;
 				bool spinWheel = true;
 				while (spinWheel)
 				{
+					// Spin the wheel
 					this->UI_SpinWheel();
-					SectorType sectorType = m_session.spinWheel(m_currentPlayer->getId());
+					SectorType sectorType; std::string sectorName;
+					std::tie (sectorType, sectorName) = m_session.spinWheel(m_currentPlayer->getId());
 					spinWheel = false;
 
+					// Take action depending on wheel spin sector
 					switch (sectorType)
 					{
 					case SectorType::CATEGORY:
 						this->UI_PlaceHolder("Category");
+						answerCategory = true;
 						break;
 					case SectorType::LOSE_TURN:
-						m_currentPlayer->loseTurn();
-						this->UI_LoseTurn();		
+
+						// Give the player a chance to use a free turn token
+						if (m_currentPlayer->hasFreeTurnToken() && this->UI_AskUseToken())
+						{
+							m_currentPlayer->useFreeTurnToken();
+							spinWheel = true;
+							this->UI_UseToken();
+						}
+						else
+						{
+							m_currentPlayer->loseTurn();
+							this->UI_LoseTurn();
+						}
 						break;
 					case SectorType::FREE_TURN:
 						m_currentPlayer->addFreeTurnToken();
@@ -68,9 +87,11 @@ void UserInterface::runGameLoop()
 						break;
 					case SectorType::PLAYER_CHOICE:
 						this->UI_PlaceHolder("Player Choice");
+						answerCategory = true;
 						break;
 					case SectorType::OPP_CHOICE:
 						this->UI_PlaceHolder("Opp Choice");
+						answerCategory = true;
 						break;
 					case SectorType::SPIN_AGAIN:
 						spinWheel = true;
@@ -81,6 +102,14 @@ void UserInterface::runGameLoop()
 						break;
 					}
 				}
+
+				//
+				// All UI logic pertaining to categories is handled within the following if statement
+				//
+				if (answerCategory)
+				{
+					this->UI_PlaceHolder("Answer a category question");
+				}
 			}
 			else
 			{
@@ -89,24 +118,6 @@ void UserInterface::runGameLoop()
 		}
 	}
 }
-
-/*
-// TBD: Hotseat only for now
-bool UserInterface::createGame()
-{
-
-}
-
-bool UserInterface::joinGame(int gameId)
-{
-
-}
-
-std::vector<std::string> UserInterface::listGames()
-{
-
-}
-*/
 
 bool UserInterface::startGame()
 {

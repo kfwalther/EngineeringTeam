@@ -11,9 +11,10 @@
 #include "Player.h"
 
 
-QCategory::QCategory(std::string const & categoryName)
+QCategory::QCategory(std::string const & categoryName, SectorType sectorTypeIn)
 {
 	this->initialize(categoryName + ".csv");
+	this->whlSectorType = sectorTypeIn;
 }
 
 QCategory::~QCategory()

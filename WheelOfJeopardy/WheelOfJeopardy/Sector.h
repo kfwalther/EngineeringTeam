@@ -25,13 +25,20 @@ struct Sector
 		return sectorType;
 	}
 
+	std::string getSectorName()
+	{
+		return sectorName;
+	}
+
 	SectorType getSectorType()
 	{
-		return SectorType::CATEGORY;
+		return whlSectorType;
 	}
+
 protected:
 	int sectorID;
 	std::string sectorName;
 	int sectorType;
+	SectorType whlSectorType;
 };
 

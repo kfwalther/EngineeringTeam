@@ -73,9 +73,9 @@ GameSession::PlayerListType & GameSession::getPlayers()
 	return *(this->players);
 }
 
-SectorType GameSession::spinWheel(int playerId)
+std::tuple<SectorType, std::string> GameSession::spinWheel(int playerId)
 {
-	return this->gameRoomHandle->getWheel()->Spin()->getSectorType();
+	return std::make_tuple(this->gameRoomHandle->getWheel()->Spin()->getSectorType(), this->gameRoomHandle->getWheel()->Spin()->getSectorName());
 }
 
 bool GameSession::useFreeTurnToken(int playerId)

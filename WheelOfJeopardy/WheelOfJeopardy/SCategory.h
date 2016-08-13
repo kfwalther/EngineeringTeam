@@ -15,7 +15,7 @@ struct Player;
 
 struct SCategory : public Sector
 {
-	SCategory(std::string const sectorName);
+	SCategory(std::string const sectorName, SectorType sectorTypeIn);
 	~SCategory();
 
 	void Bankrupt(GameSession * session);

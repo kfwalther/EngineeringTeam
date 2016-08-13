@@ -10,11 +10,12 @@
 
 #include "GameSession.h"
 
-SCategory::SCategory(std::string const sectorName)
+SCategory::SCategory(std::string const sectorName, SectorType sectorTypeIn)
 {
 	// Sector.sectorType: 1 == QCategory, 2 == SCategory
 	this->sectorType = 2;
 	this->sectorName = sectorName;
+	this->whlSectorType = sectorTypeIn;
 }
 
 SCategory::~SCategory()

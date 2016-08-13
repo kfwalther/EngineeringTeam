@@ -23,29 +23,29 @@ Wheel::Wheel()
 	srand(time(NULL));
 	// Create the 12 wheel sectors
 	//TODO use a for loop and Question
-	this->sectors->push_back(new QCategory("category1"));
+	this->sectors->push_back(new QCategory("category1", SectorType::CATEGORY));
 	this->categories->push_back("category1");
-	this->sectors->push_back(new QCategory("category2"));
+	this->sectors->push_back(new QCategory("category2", SectorType::CATEGORY));
 	this->categories->push_back("category2");
-	this->sectors->push_back(new QCategory("category3"));
+	this->sectors->push_back(new QCategory("category3", SectorType::CATEGORY));
 	this->categories->push_back("category3");
-	this->sectors->push_back(new QCategory("category4"));
+	this->sectors->push_back(new QCategory("category4", SectorType::CATEGORY));
 	this->categories->push_back("category4");
-	this->sectors->push_back(new QCategory("category5"));
+	this->sectors->push_back(new QCategory("category5", SectorType::CATEGORY));
 	this->categories->push_back("category5");
-	this->sectors->push_back(new QCategory("category6"));
+	this->sectors->push_back(new QCategory("category6", SectorType::CATEGORY));
 	this->categories->push_back("category6");
-	this->sectors->push_back(new SCategory("Bankrupt"));
+	this->sectors->push_back(new SCategory("Bankrupt", SectorType::BANKRUPT));
 	this->categories->push_back("Bankrupt");
-	this->sectors->push_back(new SCategory("Lose Turn"));
+	this->sectors->push_back(new SCategory("Lose Turn", SectorType::LOSE_TURN));
 	this->categories->push_back("Lose Turn");
-	this->sectors->push_back(new SCategory("Free Turn"));
+	this->sectors->push_back(new SCategory("Free Turn", SectorType::FREE_TURN));
 	this->categories->push_back("Free Turn");
-	this->sectors->push_back(new SCategory("Player Choice"));
+	this->sectors->push_back(new SCategory("Player Choice", SectorType::PLAYER_CHOICE));
 	this->categories->push_back("Player Choice");
-	this->sectors->push_back(new SCategory("Opponent Choice"));
+	this->sectors->push_back(new SCategory("Opponent Choice", SectorType::OPP_CHOICE));
 	this->categories->push_back("Opponent Choice");
-	this->sectors->push_back(new SCategory("Spin Again"));
+	this->sectors->push_back(new SCategory("Spin Again", SectorType::SPIN_AGAIN));
 	this->categories->push_back("Spin Again");
 }
 

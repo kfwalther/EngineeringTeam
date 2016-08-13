@@ -24,22 +24,6 @@ TerminalUI::~TerminalUI()
 
 }
 
-/*
-bool TerminalUI::createGame()
-{
-
-}
-
-bool TerminalUI::joinGame(int gameId)
-{
-
-}
-
-std::vector<std::string> TerminalUI::listGames()
-{
-
-}*/
-
 void TerminalUI::chooseCategory(int category)
 {
 
@@ -147,6 +131,36 @@ void TerminalUI::UI_SpinWheel()
 	options.push_back("Spin the wheel");
 	
 	this->promptSelect(options);
+}
+
+bool TerminalUI::UI_AskUseToken()
+{
+	bool useToken = false;
+
+	int selection = 0;
+
+	std::vector<std::string> options;
+	options.push_back("Use token");
+	options.push_back("Don't use token");
+
+	selection = this->promptSelect(options);
+
+	switch (selection)
+	{
+	case 1:
+		useToken = true;
+		break;
+	case 2:
+		useToken = false;
+		break;
+	}
+
+	return useToken;
+}
+
+void TerminalUI::UI_UseToken()
+{
+
 }
 
 void TerminalUI::UI_LoseTurn()

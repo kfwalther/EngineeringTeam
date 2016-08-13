@@ -23,9 +23,6 @@ public:
 	virtual ~TerminalUI();
 
 	// Define the UserInterface object methods.
-	/*virtual bool createGame();
-	virtual bool joinGame(int gameId);
-	virtual std::vector<std::string> listGames();*/
 	virtual void chooseCategory(int category);
 	virtual bool submitAnswer(int answer);
 	virtual void endGame();
@@ -40,6 +37,8 @@ public:
 	virtual void UI_StartTurn();
 	virtual void UI_LostTurn();
 	virtual void UI_SpinWheel();
+	virtual bool UI_AskUseToken();
+	virtual void UI_UseToken();
 	virtual void UI_LoseTurn();
 	virtual void UI_AddFreeTurn();
 	virtual void UI_Bankrupt();

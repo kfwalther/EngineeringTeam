@@ -23,7 +23,7 @@ public:
 	void setQuestion(std::string q);
 
 	/** Functional methods. */
-	bool checkAnswer(std::string const & playerAnswer);
+	bool checkAnswer(std::string & playerAnswer);
 private:
 
 	/** Define the Question class attributes. */

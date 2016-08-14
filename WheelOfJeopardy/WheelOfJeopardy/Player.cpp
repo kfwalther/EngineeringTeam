@@ -34,7 +34,7 @@ void Player::createGame()
 	this->joinGame(this);
 }
 
-int Player::getScore()
+double Player::getScore()
 {
 	return this->score;
 }

@@ -29,7 +29,7 @@ struct Player
 	void chooseCategory();
 	void submitAnswer();
 	void setScore(int const value);
-	int getScore();
+	double getScore();
 	void setFreeTurnToken(int const value);
 	void addFreeTurnToken();
 	bool hasLostTurn();

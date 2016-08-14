@@ -75,7 +75,10 @@ GameSession::PlayerListType & GameSession::getPlayers()
 
 std::tuple<SectorType, std::string> GameSession::spinWheel(int playerId)
 {
-	return std::make_tuple(this->gameRoomHandle->getWheel()->Spin()->getSectorType(), this->gameRoomHandle->getWheel()->Spin()->getSectorName());
+	// Spin the wheel, yielding a new current sector.
+	Sector * const currentSector = this->gameRoomHandle->getWheel()->Spin();
+	// Return the sector type and name.
+	return std::make_tuple(currentSector->getSectorType(), currentSector->getSectorName());
 }
 
 bool GameSession::useFreeTurnToken(int playerId)

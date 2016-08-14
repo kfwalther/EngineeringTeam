@@ -29,7 +29,7 @@ struct Player
 	void chooseCategory();
 	void submitAnswer();
 	void setScore(int const value);
-	int getScore();
+	double getScore();
 	void setFreeTurnToken(int const value);
 	void addFreeTurnToken();
 	bool hasLostTurn();
@@ -39,6 +39,7 @@ struct Player
 	std::string getName();
 	int getId();
 	int getNumTokens();
+	GameSession * const & getGameSession();
 private:
 	static int uniqueID; //ensures playerID is unique
 	int playerID;

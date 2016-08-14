@@ -50,10 +50,12 @@ void GameSession::terminateGameplay()
 {
 	//call destructors? possibly not needed if loop is inside initiateGameplay()
 }
+
 void GameSession::changeTurns()
 {
 	this->players->reverse();
 }
+
 void GameSession::join(Player *player)
 {
 	// Add the current player to the GameSession. 
@@ -63,6 +65,7 @@ void GameSession::join(Player *player)
 		this->initiateGameplay();
 	}
 }
+
 GameRoom * const & GameSession::getGameRoom()
 {
 	return this->gameRoomHandle;
@@ -75,7 +78,12 @@ GameSession::PlayerListType & GameSession::getPlayers()
 
 std::tuple<SectorType, std::string> GameSession::spinWheel(int playerId)
 {
-	return std::make_tuple(this->gameRoomHandle->getWheel()->Spin()->getSectorType(), this->gameRoomHandle->getWheel()->Spin()->getSectorName());
+	// Spin the wheel, yielding a new current sector.
+	Sector * const currentSector = this->gameRoomHandle->getWheel()->Spin();
+	// Perform the internal actions for the current sector.
+	currentSector->Action(this);
+	// Return the sector type and name.
+	return std::make_tuple(currentSector->getSectorType(), currentSector->getSectorName());
 }
 
 bool GameSession::useFreeTurnToken(int playerId)

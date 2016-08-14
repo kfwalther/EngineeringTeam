@@ -20,7 +20,7 @@ Wheel::Wheel()
 	this->counter = 5; //number of wheel spins //testcode, switch to 50 for realcode
 	this->sectors = new Wheel::SectorVectorType;	//Vector containing all sectors
 	this->categories = new Wheel::StringVectorType;	//Vector containing the names of the sectors
-	srand(time(NULL));
+	srand(static_cast<unsigned int>(std::time(NULL)));
 	// Create the 12 wheel sectors
 	//TODO use a for loop and Question
 	this->sectors->push_back(new QCategory("category1", SectorType::CATEGORY));
@@ -93,12 +93,11 @@ bool const Wheel::isSpinnable() {
 			noQuestions &= (*iter)->isEmpty();
 		}
 	}
-	return (!noQuestions | this->counter > 0);
+	return ((!noQuestions) | (this->counter > 0));
 }
 
 int const Wheel::getSize() {
-	//return this->wheelSize;
-	return this->counter+1;//testcode, should swap with return statement above
+	return this->wheelSize;
 }
 
 //Returns a vector of strings containing the names of all categories
@@ -109,5 +108,5 @@ Wheel::StringVectorType const & Wheel::listCategories()
 
 int Wheel::getSpinsLeft()
 {
-	return counter;
+	return this->counter;
 }

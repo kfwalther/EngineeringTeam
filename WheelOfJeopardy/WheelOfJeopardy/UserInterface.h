@@ -19,7 +19,7 @@ class UserInterface
 {
 public:
 	// Define the constructor and destructor.
-	UserInterface();
+	UserInterface(Player * const & player1, Player * const & player2);
 	virtual ~UserInterface();
 
 	// Define the UserInterface object methods.
@@ -48,11 +48,11 @@ public:
 	}
 
 protected:
-	GameSession m_session;
+	GameSession * m_session;
 	bool m_gameStarted;
 	bool m_exit;
 	bool m_endGame;
-	std::vector<Player*> m_players;
-	Player* m_currentPlayer;
+	std::vector<Player *> m_players;
+	Player * m_currentPlayer;
 };
 

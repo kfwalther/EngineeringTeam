@@ -22,12 +22,13 @@ using namespace std;
 void main()
 {
 	// Let's test construction of these classes.
-	//Player * kevin = new Player("Kevin");
-	//kevin->createGame();
+	Player * kevin = new Player("Kevin");
+	kevin->createGame();
+	Player * dan = new Player("Dan");
 
 	// Test UI functions
-	TerminalUI userInterface;
-	userInterface.run();
+	TerminalUI * userInterface = new TerminalUI(kevin, dan);
+	userInterface->run();
 
 	//// Define a queue container of question objects.
 	//queue<Question> Q;

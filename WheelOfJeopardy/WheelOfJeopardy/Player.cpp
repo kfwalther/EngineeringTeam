@@ -34,7 +34,7 @@ void Player::createGame()
 	this->joinGame(this);
 }
 
-int Player::getScore()
+double Player::getScore()
 {
 	return this->score;
 }
@@ -42,7 +42,7 @@ int Player::getScore()
 void Player::joinGame(Player * host)
 {
 	// Give the current player the gameSessionHandle (created by the host).
-	this->gameSessionHandle=host->gameSessionHandle;
+	this->gameSessionHandle = host->gameSessionHandle;
 	// Join the current player to the gameSession.
 	this->gameSessionHandle->join(this);
 }
@@ -111,7 +111,7 @@ void Player::addFreeTurnToken()
 
 int Player::getId()
 {
-	return playerID;
+	return this->playerID;
 }
 
 bool Player::hasLostTurn()
@@ -121,15 +121,22 @@ bool Player::hasLostTurn()
 
 void Player::clearLostTurn()
 {
-	m_lostTurn = false;
+	this->m_lostTurn = false;
 }
 
 void Player::loseTurn()
 {
-	m_lostTurn = true;
+	this->m_lostTurn = true;
 }
 
 int Player::getNumTokens()
 {
-	return totalTokens;
+	return this->totalTokens;
 }
+
+GameSession * const & Player::getGameSession()
+{
+	return this->gameSessionHandle;
+}
+
+

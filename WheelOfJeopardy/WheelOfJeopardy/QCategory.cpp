@@ -13,7 +13,7 @@
 
 QCategory::QCategory(std::string const & categoryName, SectorType sectorTypeIn)
 {
-	this->initialize(categoryName + ".csv");
+	this->initialize(categoryName);
 	this->whlSectorType = sectorTypeIn;
 }
 
@@ -24,20 +24,23 @@ QCategory::~QCategory()
 void QCategory::initialize(std::string const & csv)
 {
 	parser * Parse = new parser();
-	Parse->parseCategory(this->categoryQuestions, csv);
+	Parse->parseCategory(this->categoryQuestions, (csv + ".csv"));
 	this->sectorName = csv;
 	this->sectorType = 1;		// 1 == QCategory, 2 == SCategory
 	delete Parse;
 }
 
 void QCategory::Action(GameSession * session) {
-	std::cout << "Spins remaining: " << session->getGameRoom()->getWheel()->getSpinsLeft() << std::endl;//testcode
-	std::cout << "Player " << session->getPlayers().front()->getName() << " landed On:" << sectorName << std::endl;//testcode
+	//std::cout << "Spins remaining: " << session->getGameRoom()->getWheel()->getSpinsLeft() << std::endl;//testcode
+	//std::cout << "Player " << session->getPlayers().front()->getName() << " landed On:" << sectorName << std::endl;//testcode
 	if (!(this->categoryQuestions.empty())) {
-		//this->getQuestionInfo();
-		std::cout << this->getQuestionInfo().getQuestion() << std::endl;//testcode  //incomplete, needs to be passed to UI so player one can see the question
+		// Provide the Question content to the user.
+		// TODO: Using the UI_PlaceHolder function here, but can probably rename this UI function.
+		session->getUserInterfaceHandle()->UI_PlaceHolder("Question: " + this->getQuestionInfo().getQuestion());
 		std::string response;
-		std::cin >> response;
+		std::cout << "Answer: ";
+		std::cin.ignore();
+		std::getline(std::cin, response);
 
 		int score;
 		if (this->getQuestionInfo().checkAnswer(response)) {

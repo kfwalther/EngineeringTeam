@@ -15,6 +15,9 @@
 #include "Player.h"
 #include "Sector.h"
 
+ // Forward declaration
+struct Player;
+
 class UserInterface
 {
 public:

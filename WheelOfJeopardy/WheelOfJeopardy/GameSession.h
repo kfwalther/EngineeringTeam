@@ -13,11 +13,12 @@
 #include <tuple>
 
 #include "GameRoom.h"
-//#include "UserInterface.h"
+#include "UserInterface.h"
 #include "Player.h"
 
 // Forward declaration
 struct Player;
+class UserInterface;
 
 struct GameSession
 {
@@ -44,6 +45,8 @@ struct GameSession
 	void bankrupt(int playerId);
 	int getWheelSpinsLeft();
 	int getRoundNumber();
+	UserInterface * const & getUserInterfaceHandle();
+	void setUserInterfaceHandle(UserInterface * const & userInterface);
 
 protected:
 	static int uniqueID;//ensures sessionID is unique
@@ -54,7 +57,6 @@ protected:
 	int otherPlayer;
 	int rounds;
 	GameRoom * gameRoomHandle;
-	// Still need to define the UserInterface class.
-	//UserInterface * userInterfaceHandle;
+	UserInterface * userInterfaceHandle;
 };
 

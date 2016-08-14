@@ -105,3 +105,14 @@ int GameSession::getRoundNumber()
 {
 	return 1;
 }
+
+UserInterface * const & GameSession::getUserInterfaceHandle()
+{
+	return this->userInterfaceHandle;
+}
+
+
+void GameSession::setUserInterfaceHandle(UserInterface * const & userInterface)
+{
+	this->userInterfaceHandle = userInterface;
+}

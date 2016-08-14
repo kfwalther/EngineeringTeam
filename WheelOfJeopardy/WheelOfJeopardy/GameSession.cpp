@@ -42,9 +42,13 @@ bool GameSession::initiateGameplay()
 	return true;
 }
 
-void GameSession::terminateGameplay()
+bool GameSession::terminateGameplay()
 {
-	//call destructors? possibly not needed if loop is inside initiateGameplay()
+	// Check to see if the current round can be terminated.
+	if (this->gameRoomHandle->getWheel()->isSpinnable())
+		return true;
+	
+	return false;
 }
 
 void GameSession::changeTurns()

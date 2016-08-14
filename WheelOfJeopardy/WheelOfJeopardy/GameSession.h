@@ -31,7 +31,7 @@ struct GameSession
 
 	/** Functional methods. */
 	bool initiateGameplay();
-	void terminateGameplay();
+	bool terminateGameplay();
 	void changeTurns();
 	void join(Player *player);
 	GameRoom * const & getGameRoom();

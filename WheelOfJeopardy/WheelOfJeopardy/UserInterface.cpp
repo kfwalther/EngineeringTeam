@@ -161,6 +161,13 @@ void UserInterface::runGameLoop()
 						spinWheel = false;
 					}
 				}
+
+				// Check to see if the game is terminated, if so
+				// force spinWheel to be false.
+				this->endGame();
+				if (this->m_endGame)
+					spinWheel = false;
+				
 			}
 
 			this->UI_EndTurn();
@@ -191,5 +198,5 @@ bool UserInterface::useFreeTurnToken()
 
 void UserInterface::endGame()
 {
-	m_endGame = true;
+	this->m_endGame = this->m_session->terminateGameplay();
 }

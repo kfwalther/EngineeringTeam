@@ -45,7 +45,7 @@ private:
 	int wheelSize;
 	SectorVectorType * sectors;
 	StringVectorType * categories;
-	Sector* m_currentSector;
+	Sector * m_currentSector;
 	// Still need to define WheelFrame class.
 	//WheelFrame * wheelFrame; 
 };

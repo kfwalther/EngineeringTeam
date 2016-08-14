@@ -19,7 +19,7 @@ class QCategory : public Sector
 public:
 	QCategory(std::string const & categoryName, SectorType sectorTypeIn);
 	void initialize(std::string const & csv);
-	Question & getQuestionInfo();
+	Question getQuestionInfo();
 	std::string getCategoryName();
 	~QCategory();
 

@@ -145,6 +145,12 @@ void TerminalUI::UI_Category(std::string category)
 	cout << "<< Wheel: landed on category -> " << category << "\n";
 }
 
+void TerminalUI::UI_Question(Question & question)
+{
+	cout << "\n---------------------------------------------------------------------\n";
+	cout << "<< Question: " << question.getQuestion() << "\n";
+}
+
 bool TerminalUI::UI_AskUseToken()
 {
 	bool useToken = false;

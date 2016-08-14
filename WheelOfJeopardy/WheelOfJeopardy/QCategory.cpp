@@ -31,30 +31,12 @@ void QCategory::initialize(std::string const & csv)
 }
 
 void QCategory::Action(GameSession * session) {
-	//std::cout << "Spins remaining: " << session->getGameRoom()->getWheel()->getSpinsLeft() << std::endl;//testcode
-	//std::cout << "Player " << session->getPlayers().front()->getName() << " landed On:" << sectorName << std::endl;//testcode
 	if (!(this->categoryQuestions.empty())) {
-		// Provide the Question content to the user.
+		// Push the Question content to the GameSession instance, accessible via the UserInterface.
+		session->setCurrentQuestion(this->getQuestionInfo());
 		// TODO: Using the UI_PlaceHolder function here, but can probably rename this UI function.
 		//session->getUserInterfaceHandle()->UI_PlaceHolder("QCategory::Action - Question: " + this->getQuestionInfo().getQuestion());
-		std::string response = "";
-		
-		//std::cout << "QCategory::Action - Answer: ";
-		//std::cin.ignore();
-		//std::getline(std::cin, response);
-
-		int score;
-		if (this->getQuestionInfo().checkAnswer(response)) {
-			score = this->getQuestionInfo().getPoints();
-			session->getPlayers().front()->changeScore(score);
-		}
-		else {
-			score = -1 * this->getQuestionInfo().getPoints();
-			session->getPlayers().front()->changeScore(score);
-			session->changeTurns();
-		}
 		this->categoryQuestions.pop();
-
 	}
 	else {
 		std::cout << "QCategory::Action - Category Empty, rerolling\n";//testcode
@@ -63,9 +45,11 @@ void QCategory::Action(GameSession * session) {
 
 }
 
-Question & QCategory::getQuestionInfo()
+Question QCategory::getQuestionInfo()
 {
-	return categoryQuestions.front();
+	// Make a copy of the current question and return it.
+	Question currentQuestion = categoryQuestions.front();
+	return currentQuestion;
 }
 
 std::string QCategory::getCategoryName()

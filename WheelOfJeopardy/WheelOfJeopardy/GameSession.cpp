@@ -13,7 +13,7 @@
 GameSession::GameSession()
 {
 	this->gameRoomHandle = new GameRoom();
-	this->players = new GameSession::PlayerListType;
+	this->players = new GameSession::PlayerVectorType;
 	this->rounds=2; //number of rounds
 	this->sessionID=GameSession::uniqueID;
 	GameSession::uniqueID++;
@@ -33,13 +33,15 @@ int GameSession::uniqueID=0;
 /** Functional methods. */
 bool GameSession::initiateGameplay()
 {
+	// Set the current player.
+	this->currentPlayerIndex = 0;
 	for (int i = 0; i < this->rounds; i++) {
 		//delete the old GameRoom, and create a new one for round 2.
 		this->gameRoomHandle = new GameRoom();	
 	}
-
 	return true;
 }
+
 void GameSession::terminateGameplay()
 {
 	//call destructors? possibly not needed if loop is inside initiateGameplay()
@@ -47,7 +49,10 @@ void GameSession::terminateGameplay()
 
 void GameSession::changeTurns()
 {
-	this->players->reverse();
+	this->currentPlayerIndex++;
+	if (this->currentPlayerIndex == this->players->size()) {
+		this->currentPlayerIndex = 0;	// loop back around.
+	}
 }
 
 void GameSession::join(Player *player)
@@ -65,7 +70,7 @@ GameRoom * const & GameSession::getGameRoom()
 	return this->gameRoomHandle;
 }
 
-GameSession::PlayerListType & GameSession::getPlayers()
+GameSession::PlayerVectorType & GameSession::getPlayers()
 {
 	return *(this->players);
 }
@@ -111,4 +116,39 @@ UserInterface * const & GameSession::getUserInterfaceHandle()
 void GameSession::setUserInterfaceHandle(UserInterface * const & userInterface)
 {
 	this->userInterfaceHandle = userInterface;
+}
+
+Question & GameSession::getCurrentQuestion() {
+	return this->currentQuestion;
+}
+
+void GameSession::setCurrentQuestion(Question newCurrentQuestion) {
+	this->currentQuestion = newCurrentQuestion;
+}
+
+bool GameSession::answerQuestion() {
+	// Prompt user for an answer to the current question.
+	std::string response = "";
+	std::cout << "Answer: ";
+	std::cin.ignore();
+	std::getline(std::cin, response);
+
+	int score;
+	// Check the player's answer against the correct answer.
+	if (this->currentQuestion.checkAnswer(response)) {
+		// Correct answer.
+		score = this->currentQuestion.getPoints();
+		this->getCurrentPlayer()->changeScore(score);
+		return true;
+	} else {
+		// Incorrect answer.
+		score = -1 * this->currentQuestion.getPoints();
+		this->getCurrentPlayer()->changeScore(score);
+		this->changeTurns();
+		return false;
+	}
+}
+
+Player * const & GameSession::getCurrentPlayer() {
+	return this->players->at(this->currentPlayerIndex);
 }

@@ -8,7 +8,7 @@
 * @ingroup WheelOfJeopardy
 */
 
-#include <list>
+#include <vector>
 #include <cstddef>
 #include <tuple>
 
@@ -22,10 +22,8 @@ class UserInterface;
 
 struct GameSession
 {
-	// Alias the list of Player objects attribute.
-	//first element will always point to current player
-	//second element will always point to other player.
-	typedef std::list<Player *> PlayerListType;
+	// Alias the vector of Player objects attribute.
+	typedef std::vector<Player *> PlayerVectorType;
 
 	// Define the constructor/destructor.
 	GameSession();
@@ -37,7 +35,7 @@ struct GameSession
 	void changeTurns();
 	void join(Player *player);
 	GameRoom * const & getGameRoom();
-	GameSession::PlayerListType & getPlayers();
+	GameSession::PlayerVectorType & getPlayers();
 
 	// Top level, exposed to UI
 	std::tuple<SectorType, std::string> spinWheel(int playerId);
@@ -47,16 +45,22 @@ struct GameSession
 	int getRoundNumber();
 	UserInterface * const & getUserInterfaceHandle();
 	void setUserInterfaceHandle(UserInterface * const & userInterface);
+	Question & getCurrentQuestion();
+	void setCurrentQuestion(Question newCurrentQuestion);
+	bool answerQuestion();
+	Player * const & getCurrentPlayer();
 
 protected:
 	static int uniqueID;//ensures sessionID is unique
 	int sessionID;
-	PlayerListType * players;
+	PlayerVectorType * players;
 	// currentPlayer value matches Player.playerID for current player.
+	int currentPlayerIndex;
 	int currentPlayer;
 	int otherPlayer;
 	int rounds;
 	GameRoom * gameRoomHandle;
 	UserInterface * userInterfaceHandle;
+	Question currentQuestion;
 };
 

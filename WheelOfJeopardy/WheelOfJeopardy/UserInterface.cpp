@@ -34,151 +34,143 @@ void UserInterface::runGameLoop()
 {
 	while (!m_endGame)
 	{
-		// Let all the players have a turn 
-		for (std::vector<Player*>::iterator iter = m_players.begin(); iter != m_players.end(); ++iter)
+		// Get the current player turn.
+		m_currentPlayer = this->m_session->getCurrentPlayer();
+
+		// Check if the player lost a turn last round
+		if (!(m_currentPlayer->hasLostTurn()))
 		{
-			// Set the current player turn 
-			m_currentPlayer = *iter;
+			this->UI_StartTurn();
 
-			// Check if the player lost a turn last round
-			if (!(m_currentPlayer->hasLostTurn()))
+			//
+			// All UI logic pertaining to the wheel is handled in the following while loop
+			//
+			bool answerCategory = false;
+			bool spinWheel = true;
+			while (spinWheel)
 			{
-				this->UI_StartTurn();
+				// Spin the wheel
+				this->UI_SpinWheel();
+				SectorType sectorType; std::string sectorName;
+				std::tie(sectorType, sectorName) = m_session->spinWheel(m_currentPlayer->getId());
+				spinWheel = false;
 
-				//
-				// All UI logic pertaining to the wheel is handled in the following while loop
-				//
-				bool answerCategory = false;
-				bool spinWheel = true;
-				while (spinWheel)
+				// Take action depending on wheel spin sector
+				switch (sectorType)
 				{
-					// Spin the wheel
-					this->UI_SpinWheel();
-					SectorType sectorType; std::string sectorName;
-					std::tie (sectorType, sectorName) = m_session->spinWheel(m_currentPlayer->getId());
-					spinWheel = false;
+				case SectorType::CATEGORY:
+					this->UI_Category(sectorName);
+					answerCategory = true;
+					break;
+				case SectorType::LOSE_TURN:
 
-					// Take action depending on wheel spin sector
-					switch (sectorType)
+					// Give the player a chance to use a free turn token
+					if (m_currentPlayer->hasFreeTurnToken() && this->UI_AskUseToken())
 					{
-					case SectorType::CATEGORY:
-						this->UI_Category(sectorName);
-						answerCategory = true;
-						break;
-					case SectorType::LOSE_TURN:
-
-						// Give the player a chance to use a free turn token
-						if (m_currentPlayer->hasFreeTurnToken() && this->UI_AskUseToken())
-						{
-							m_currentPlayer->useFreeTurnToken();
-							spinWheel = true;
-							this->UI_UseToken();
-						}
-						else
-						{
-							m_currentPlayer->loseTurn();
-							this->UI_LoseTurn();
-						}
-						break;
-					case SectorType::FREE_TURN:
-						m_currentPlayer->addFreeTurnToken();
-						this->UI_AddFreeTurn();
-						break;
-					case SectorType::BANKRUPT:
-						m_session->bankrupt(m_currentPlayer->getId());
-						this->UI_Bankrupt();
-						break;
-					case SectorType::PLAYER_CHOICE:
-						// NOTE:  This one is pretty straight-forward -- we just want 
-						// to provide a list of available categories and let the 
-						// user choose 
-						//
-						// std::vector<std::categories> categories = m_session->getCategories();
-						// m_session->chooseCategory(this->UI_ChooseCategory(categories));
-
-						// Remove UI_PlaceHolder call once above implemented
-						this->UI_PlaceHolder("Player Choice");
-						answerCategory = true;
-						break;
-					case SectorType::OPP_CHOICE:
-						// NOTE: Now this one is more complex... we want to let all 
-						// opponent (non-current) players vote on the category to choose
-						//
-						// std::vector<std::categories> categories = m_session->getCategories();
-						// 
-						// std::map<std::string, int> votes;
-						// 
-						// for (std::vector<Player*>::iterator iter_2 = m_players.begin(); iter_2 != m_players.end(); ++iter_2)
-						// {
-						//		if(*iter_2 != m_currentPlayer)
-						//		{
-						//			std::string choice = this->UI_OppVote(categories, *iter_2);
-						//			votes[choice]++;
-					    //		}
-						// }
-						//
-						// int largestVote = votes[0].second;
-						// std::string vote = votes[1].first;
-						// for (int i = 0; i < votes.size(); i++)
-						// {
-						//		if(votes[i].second > largestVote)
-						//			vote = votes[i].first;
-						// }
-						// 
-						// this->UI_OppVoteWinner(vote);
-						// m_session.voteCategory(vote);
-						//
-
-						this->UI_PlaceHolder("Opp Choice");
-						answerCategory = true;
-						break;
-					case SectorType::SPIN_AGAIN:
+						m_currentPlayer->useFreeTurnToken();
 						spinWheel = true;
-						this->UI_SpinAgain();
-						break;
-					default:
-						this->UI_PlaceHolder("Default");
-						break;
-					}
-				}
-
-				//
-				// All UI logic pertaining to categories is handled within the following if statement
-				//
-				if (answerCategory)
-				{
-					// NOTE: I am expecting some return type that includes 
-					// the question text, list of acceptable options, and
-					// any additional information (eg points) that may be 
-					// relevant from a UI perspective. If the existing question
-					// class has these accessors, then that'll work for this
-					//
-					// It'd also be good to grab the timer value and pass it to a 
-					// UI_* function every x ticks 
-					//
-					// Question question = m_session->getCurrentQuestion();
-					// bool result = m_session->answerQuestion(this->UI_Question(question));
-					
-					// TBR: temp declaration, remove once above implemented
-					bool result = false;
-					// TBR: end temp declaration
-					
-					if (result)
-					{
-						this->UI_CorrectAnswer();
+						this->UI_UseToken();
 					}
 					else
 					{
-						this->UI_WrongAnswer();
+						m_currentPlayer->loseTurn();
+						this->UI_LoseTurn();
 					}
-				}
+					break;
+				case SectorType::FREE_TURN:
+					m_currentPlayer->addFreeTurnToken();
+					this->UI_AddFreeTurn();
+					break;
+				case SectorType::BANKRUPT:
+					m_session->bankrupt(m_currentPlayer->getId());
+					this->UI_Bankrupt();
+					break;
+				case SectorType::PLAYER_CHOICE:
+					// NOTE:  This one is pretty straight-forward -- we just want 
+					// to provide a list of available categories and let the 
+					// user choose 
+					//
+					// std::vector<std::categories> categories = m_session->getCategories();
+					// m_session->chooseCategory(this->UI_ChooseCategory(categories));
 
-				this->UI_EndTurn();
+					// Remove UI_PlaceHolder call once above implemented
+					this->UI_PlaceHolder("Player Choice");
+					answerCategory = true;
+					break;
+				case SectorType::OPP_CHOICE:
+					// NOTE: Now this one is more complex... we want to let all 
+					// opponent (non-current) players vote on the category to choose
+					//
+					// std::vector<std::categories> categories = m_session->getCategories();
+					// 
+					// std::map<std::string, int> votes;
+					// 
+					// for (std::vector<Player*>::iterator iter_2 = m_players.begin(); iter_2 != m_players.end(); ++iter_2)
+					// {
+					//		if(*iter_2 != m_currentPlayer)
+					//		{
+					//			std::string choice = this->UI_OppVote(categories, *iter_2);
+					//			votes[choice]++;
+					//		}
+					// }
+					//
+					// int largestVote = votes[0].second;
+					// std::string vote = votes[1].first;
+					// for (int i = 0; i < votes.size(); i++)
+					// {
+					//		if(votes[i].second > largestVote)
+					//			vote = votes[i].first;
+					// }
+					// 
+					// this->UI_OppVoteWinner(vote);
+					// m_session.voteCategory(vote);
+					//
+
+					this->UI_PlaceHolder("Opp Choice");
+					answerCategory = true;
+					break;
+				case SectorType::SPIN_AGAIN:
+					spinWheel = true;
+					this->UI_SpinAgain();
+					break;
+				default:
+					this->UI_PlaceHolder("Default");
+					break;
+				}
 			}
-			else
+
+			//
+			// All UI logic pertaining to categories is handled within the following if statement
+			//
+			if (answerCategory)
 			{
-				this->UI_LostTurn();
+				// NOTE: I am expecting some return type that includes 
+				// the question text, list of acceptable options, and
+				// any additional information (eg points) that may be 
+				// relevant from a UI perspective. If the existing question
+				// class has these accessors, then that'll work for this
+				//
+				// It'd also be good to grab the timer value and pass it to a 
+				// UI_* function every x ticks 
+				//
+
+				this->UI_Question(m_session->getCurrentQuestion());
+					
+				if (m_session->answerQuestion())
+				{
+					this->UI_CorrectAnswer();
+				}
+				else
+				{
+					this->UI_WrongAnswer();
+				}
 			}
+
+			this->UI_EndTurn();
+		}
+		else
+		{
+			this->UI_LostTurn();
 		}
 	}
 }

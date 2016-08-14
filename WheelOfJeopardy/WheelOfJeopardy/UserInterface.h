@@ -37,6 +37,7 @@ public:
 	virtual void UI_LostTurn() = 0;
 	virtual void UI_SpinWheel() = 0;
 	virtual void UI_Category(std::string category) = 0;
+	virtual void UI_Question(Question & question) = 0;
 	virtual bool UI_AskUseToken() = 0;
 	virtual void UI_UseToken() = 0;
 	virtual void UI_LoseTurn() = 0;

@@ -31,13 +31,13 @@ void QCategory::initialize(std::string const & csv)
 }
 
 void QCategory::Action(GameSession * session) {
-	std::cout << "Spins remaining: " << session->getGameRoom()->getWheel()->getSize() << std::endl;//testcode
+	std::cout << "Spins remaining: " << session->getGameRoom()->getWheel()->getSpinsLeft() << std::endl;//testcode
 	std::cout << "Player " << session->getPlayers().front()->getName() << " landed On:" << sectorName << std::endl;//testcode
 	if (!(this->categoryQuestions.empty())) {
 		//this->getQuestionInfo();
 		std::cout << this->getQuestionInfo().getQuestion() << std::endl;//testcode  //incomplete, needs to be passed to UI so player one can see the question
 		std::string response;
-		std::getline(std::cin, response);
+		std::cin >> response;
 
 		int score;
 		if (this->getQuestionInfo().checkAnswer(response)) {

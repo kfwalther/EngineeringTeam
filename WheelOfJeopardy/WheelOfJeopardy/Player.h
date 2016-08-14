@@ -39,6 +39,7 @@ struct Player
 	std::string getName();
 	int getId();
 	int getNumTokens();
+	GameSession * const & getGameSession();
 private:
 	static int uniqueID; //ensures playerID is unique
 	int playerID;

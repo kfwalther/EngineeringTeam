@@ -12,8 +12,8 @@
 using std::cout;
 using std::cin;
 
-TerminalUI::TerminalUI()
-{
+TerminalUI::TerminalUI(Player * const & player1, Player * const & player2) : 
+		UserInterface(player1, player2) {
 	cout << "*********************************\n";
 	cout << "*       WHEEL OF JEOPARDY       *\n";
 	cout << "*********************************\n";
@@ -106,8 +106,8 @@ void TerminalUI::UI_StartTurn()
 	cout << "---------------------------------------------------------------------\n";
 	cout << "Game Data" << "\n";
 	cout << "---------------------------------------------------------------------\n";
-	cout << "Round: " << m_session.getRoundNumber() << "\n";
-	cout << "Spins Remaining: " << m_session.getWheelSpinsLeft() << "\n";
+	cout << "Round: " << m_session->getRoundNumber() << "\n";
+	cout << "Spins Remaining: " << m_session->getWheelSpinsLeft() << "\n";
 
 	cout << "---------------------------------------------------------------------\n";
 	cout << "Player Data" << "\n";

@@ -7,14 +7,14 @@
 */
 #include "UserInterface.h"
 
-UserInterface::UserInterface()
-	: m_session(),
+UserInterface::UserInterface(Player * const & player1, Player * const & player2)
+	: m_session(player1->getGameSession()),
 	  m_gameStarted(false),
 	  m_exit(false),
 	  m_endGame(false)
 {
-	m_players.push_back(new Player("Player 1"));
-	m_players.push_back(new Player("Player 2"));
+	this->m_players.push_back(player1);
+	this->m_players.push_back(player2);
 }
 
 UserInterface::~UserInterface()
@@ -52,7 +52,7 @@ void UserInterface::runGameLoop()
 					// Spin the wheel
 					this->UI_SpinWheel();
 					SectorType sectorType; std::string sectorName;
-					std::tie (sectorType, sectorName) = m_session.spinWheel(m_currentPlayer->getId());
+					std::tie (sectorType, sectorName) = m_session->spinWheel(m_currentPlayer->getId());
 					spinWheel = false;
 
 					// Take action depending on wheel spin sector
@@ -82,7 +82,7 @@ void UserInterface::runGameLoop()
 						this->UI_AddFreeTurn();
 						break;
 					case SectorType::BANKRUPT:
-						m_session.bankrupt(m_currentPlayer->getId());
+						m_session->bankrupt(m_currentPlayer->getId());
 						this->UI_Bankrupt();
 						break;
 					case SectorType::PLAYER_CHOICE:
@@ -121,23 +121,19 @@ void UserInterface::runGameLoop()
 
 bool UserInterface::startGame()
 {
-	std::vector<Player*>::iterator iter;
+	// Join the second player to the game.
+	this->m_players.back()->joinGame(this->m_players.front());
 
-	for (iter = m_players.begin(); iter != m_players.end(); ++iter)
-		m_session.join(*iter);
+	// Start the game loop.
+	this->m_gameStarted = true;
+	this->runGameLoop();
 
-	if (m_session.initiateGameplay())
-	{
-		m_gameStarted = true;
-		this->runGameLoop();
-	}
-
-	return m_gameStarted;
+	return this->m_gameStarted;
 }
 
 bool UserInterface::useFreeTurnToken()
 {
-	return m_session.useFreeTurnToken(m_currentPlayer->getId());
+	return m_session->useFreeTurnToken(m_currentPlayer->getId());
 }
 
 void UserInterface::endGame()

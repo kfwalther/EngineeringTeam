@@ -36,12 +36,15 @@ public:
 	virtual void UI_StartTurn() = 0;
 	virtual void UI_LostTurn() = 0;
 	virtual void UI_SpinWheel() = 0;
+	virtual void UI_Category(std::string category) = 0;
 	virtual bool UI_AskUseToken() = 0;
 	virtual void UI_UseToken() = 0;
 	virtual void UI_LoseTurn() = 0;
 	virtual void UI_AddFreeTurn() = 0;
 	virtual void UI_Bankrupt() = 0;
 	virtual void UI_SpinAgain() = 0;
+	virtual void UI_CorrectAnswer() = 0;
+	virtual void UI_WrongAnswer() = 0;
 	virtual void UI_EndTurn() = 0;
 	
 	virtual void UI_PlaceHolder(std::string input)

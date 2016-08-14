@@ -62,8 +62,8 @@ void SCategory::SpinAgain(GameSession * session) {
 }
 
 void SCategory::Action(GameSession * session) {	//overrides Sector::Action(GameSession *), calls the appropriate function and forwards the GameSession pointer to it
-		std::cout<<"Spins remaining: "<< session->getGameRoom()->getWheel()->getSpinsLeft() << std::endl;//testcode
-		std::cout << "Player "<<session->getPlayers().front()->getName()<<" landed On:"<<sectorName << std::endl;//testcode
+		std::cout<<"SCategory::Action - Spins remaining: "<< session->getGameRoom()->getWheel()->getSpinsLeft() << std::endl;//testcode
+		std::cout << "SCategory::Action - Player "<<session->getPlayers().front()->getName()<<" landed On:"<<sectorName << std::endl;//testcode
 
         if (this->sectorName == "Bankrupt") {
 			this->Bankrupt(session);

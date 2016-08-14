@@ -37,11 +37,14 @@ public:
 	virtual void UI_StartTurn();
 	virtual void UI_LostTurn();
 	virtual void UI_SpinWheel();
+	virtual void UI_Category(std::string category);
 	virtual bool UI_AskUseToken();
 	virtual void UI_UseToken();
 	virtual void UI_LoseTurn();
 	virtual void UI_AddFreeTurn();
 	virtual void UI_Bankrupt();
 	virtual void UI_SpinAgain();
+	virtual void UI_CorrectAnswer();
+	virtual void UI_WrongAnswer();
 	virtual void UI_EndTurn();
 };

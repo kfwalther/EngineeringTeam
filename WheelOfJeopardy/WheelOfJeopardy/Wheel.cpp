@@ -72,7 +72,8 @@ Sector * const & Wheel::Spin()
 		int randomIndex;
 		randomIndex = rand() % this->wheelSize;
 		this->counter--;
-		return (sectors->at(randomIndex));
+		m_currentSector = sectors->at(randomIndex);
+		return (m_currentSector);
 }
 
 Wheel::SectorVectorType const & Wheel::getSectors()

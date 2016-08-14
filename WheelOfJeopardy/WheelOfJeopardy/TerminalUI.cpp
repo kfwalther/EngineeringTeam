@@ -83,7 +83,6 @@ int TerminalUI::promptSelect(std::vector<std::string>& options)
 
 	while (option <= 0 || option > options.size())
 	{
-		cout << "\n";
 		cout << "<< Select an option:" << "\n";
 
 		for (int i = 0; i < options.size(); i++)
@@ -127,17 +126,23 @@ void TerminalUI::UI_StartTurn()
 
 void TerminalUI::UI_LostTurn()
 {
-	cout << "---------------------------------------------------------------------\n";
+	cout << "\n---------------------------------------------------------------------\n";
 	cout << "<< You have lost your turn - skipping" << "\n";
 }
 
 void TerminalUI::UI_SpinWheel()
 {
-	cout << "---------------------------------------------------------------------\n";
+	cout << "\n---------------------------------------------------------------------\n";
 	std::vector<std::string> options;
 	options.push_back("Spin the wheel");
 	
 	this->promptSelect(options);
+}
+
+void TerminalUI::UI_Category(std::string category)
+{
+	cout << "\n---------------------------------------------------------------------\n";
+	cout << "<< Wheel: landed on category -> " << category << "\n";
 }
 
 bool TerminalUI::UI_AskUseToken()
@@ -172,32 +177,44 @@ void TerminalUI::UI_UseToken()
 
 void TerminalUI::UI_LoseTurn()
 {
-	cout << "---------------------------------------------------------------------\n";
+	cout << "\n---------------------------------------------------------------------\n";
 	cout << "<< Wheel: You have lost a turn!" << "\n";
 }
 
 void TerminalUI::UI_AddFreeTurn()
 {
-	cout << "---------------------------------------------------------------------\n";
+	cout << "\n---------------------------------------------------------------------\n";
 	cout << "<< Wheel: You have added a free turn!" << "\n";
 }
 
 void TerminalUI::UI_Bankrupt()
 {
-	cout << "---------------------------------------------------------------------\n";
+	cout << "\n---------------------------------------------------------------------\n";
 	cout << "<< Wheel: You are bankrupt!" << "\n";
 }
 
 void TerminalUI::UI_SpinAgain()
 {
-	cout << "---------------------------------------------------------------------\n";
+	cout << "\n---------------------------------------------------------------------\n";
 	cout << "<< Wheel: You get to spin again!" << "\n";
+}
+
+void TerminalUI::UI_CorrectAnswer()
+{
+	cout << "\n---------------------------------------------------------------------\n";
+	cout << "<< Question: You answered correctly!" << "\n";
+}
+
+void TerminalUI::UI_WrongAnswer()
+{
+	cout << "\n---------------------------------------------------------------------\n";
+	cout << "<< Question: You answered incorrectly!" << "\n";
 }
 
 void TerminalUI::UI_EndTurn()
 {
-	cout << "---------------------------------------------------------------------\n";
-	cout << "<< End of turn!";
+	cout << "\n---------------------------------------------------------------------\n";
+	cout << "<< End of turn!\n";
 
 	std::vector<std::string> options;
 	options.push_back("Next turn");

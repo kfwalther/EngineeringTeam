@@ -62,7 +62,7 @@ void UserInterface::runGameLoop()
 					switch (sectorType)
 					{
 					case SectorType::CATEGORY:
-						this->UI_PlaceHolder("Category");
+						this->UI_Category(sectorName);
 						answerCategory = true;
 						break;
 					case SectorType::LOSE_TURN:
@@ -89,10 +89,46 @@ void UserInterface::runGameLoop()
 						this->UI_Bankrupt();
 						break;
 					case SectorType::PLAYER_CHOICE:
+						// NOTE:  This one is pretty straight-forward -- we just want 
+						// to provide a list of available categories and let the 
+						// user choose 
+						//
+						// std::vector<std::categories> categories = m_session->getCategories();
+						// m_session->chooseCategory(this->UI_ChooseCategory(categories));
+
+						// Remove UI_PlaceHolder call once above implemented
 						this->UI_PlaceHolder("Player Choice");
 						answerCategory = true;
 						break;
 					case SectorType::OPP_CHOICE:
+						// NOTE: Now this one is more complex... we want to let all 
+						// opponent (non-current) players vote on the category to choose
+						//
+						// std::vector<std::categories> categories = m_session->getCategories();
+						// 
+						// std::map<std::string, int> votes;
+						// 
+						// for (std::vector<Player*>::iterator iter_2 = m_players.begin(); iter_2 != m_players.end(); ++iter_2)
+						// {
+						//		if(*iter_2 != m_currentPlayer)
+						//		{
+						//			std::string choice = this->UI_OppVote(categories, *iter_2);
+						//			votes[choice]++;
+					    //		}
+						// }
+						//
+						// int largestVote = votes[0].second;
+						// std::string vote = votes[1].first;
+						// for (int i = 0; i < votes.size(); i++)
+						// {
+						//		if(votes[i].second > largestVote)
+						//			vote = votes[i].first;
+						// }
+						// 
+						// this->UI_OppVoteWinner(vote);
+						// m_session.voteCategory(vote);
+						//
+
 						this->UI_PlaceHolder("Opp Choice");
 						answerCategory = true;
 						break;
@@ -111,7 +147,30 @@ void UserInterface::runGameLoop()
 				//
 				if (answerCategory)
 				{
-					this->UI_PlaceHolder("Answer a category question");
+					// NOTE: I am expecting some return type that includes 
+					// the question text, list of acceptable options, and
+					// any additional information (eg points) that may be 
+					// relevant from a UI perspective. If the existing question
+					// class has these accessors, then that'll work for this
+					//
+					// It'd also be good to grab the timer value and pass it to a 
+					// UI_* function every x ticks 
+					//
+					// Question question = m_session->getCurrentQuestion();
+					// bool result = m_session->answerQuestion(this->UI_Question(question));
+					
+					// TBR: temp declaration, remove once above implemented
+					bool result = false;
+					// TBR: end temp declaration
+					
+					if (result)
+					{
+						this->UI_CorrectAnswer();
+					}
+					else
+					{
+						this->UI_WrongAnswer();
+					}
 				}
 
 				this->UI_EndTurn();
@@ -127,13 +186,13 @@ void UserInterface::runGameLoop()
 bool UserInterface::startGame()
 {
 	// Join the second player to the game.
-	this->m_players.back()->joinGame(this->m_players.front());
+	m_players.back()->joinGame(m_players.front());
 
 	// Start the game loop.
-	this->m_gameStarted = true;
+	m_gameStarted = true;
 	this->runGameLoop();
 
-	return this->m_gameStarted;
+	return m_gameStarted;
 }
 
 bool UserInterface::useFreeTurnToken()

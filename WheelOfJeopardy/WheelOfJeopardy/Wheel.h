@@ -35,12 +35,17 @@ struct Wheel
 	Wheel::StringVectorType const & listCategories();
 	bool const isSpinnable();
 	int getSpinsLeft();
+	Sector* getCurrentSector()
+	{
+		return m_currentSector;
+	}
 private:
 	int wheelID;
 	int counter;
 	int wheelSize;
 	SectorVectorType * sectors;
 	StringVectorType * categories;
+	Sector* m_currentSector;
 	// Still need to define WheelFrame class.
 	//WheelFrame * wheelFrame; 
 };

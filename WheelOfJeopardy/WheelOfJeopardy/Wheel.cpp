@@ -17,7 +17,7 @@
 Wheel::Wheel()
 {
 	this->wheelSize = 12;	//number of different sectors
-	this->counter = 5; //number of wheel spins //testcode, switch to 50 for realcode
+	this->counter = 10; //number of wheel spins //testcode, switch to 50 for realcode
 	this->sectors = new Wheel::SectorVectorType;	//Vector containing all sectors
 	this->categories = new Wheel::StringVectorType;	//Vector containing the names of the sectors
 	srand(static_cast<unsigned int>(std::time(NULL)));
@@ -36,17 +36,11 @@ Wheel::Wheel()
 	this->sectors->push_back(new QCategory("category6", SectorType::CATEGORY));
 	this->categories->push_back("category6");
 	this->sectors->push_back(new SCategory("Bankrupt", SectorType::BANKRUPT));
-	this->categories->push_back("Bankrupt");
 	this->sectors->push_back(new SCategory("Lose Turn", SectorType::LOSE_TURN));
-	this->categories->push_back("Lose Turn");
 	this->sectors->push_back(new SCategory("Free Turn", SectorType::FREE_TURN));
-	this->categories->push_back("Free Turn");
 	this->sectors->push_back(new SCategory("Player Choice", SectorType::PLAYER_CHOICE));
-	this->categories->push_back("Player Choice");
 	this->sectors->push_back(new SCategory("Opponent Choice", SectorType::OPP_CHOICE));
-	this->categories->push_back("Opponent Choice");
 	this->sectors->push_back(new SCategory("Spin Again", SectorType::SPIN_AGAIN));
-	this->categories->push_back("Spin Again");
 }
 
 Wheel::~Wheel()
@@ -106,6 +100,7 @@ Wheel::StringVectorType const & Wheel::listCategories()
 {
 	return *(this->categories);
 }
+
 
 int Wheel::getSpinsLeft()
 {

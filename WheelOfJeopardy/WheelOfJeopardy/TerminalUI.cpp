@@ -24,11 +24,6 @@ TerminalUI::~TerminalUI()
 
 }
 
-void TerminalUI::chooseCategory(int category)
-{
-
-}
-
 bool TerminalUI::submitAnswer(int answer)
 {
 	return false;
@@ -77,7 +72,7 @@ void TerminalUI::run()
 	this->promptPreGame();
 }
 
-int TerminalUI::promptSelect(std::vector<std::string>& options)
+int TerminalUI::promptSelect(std::vector<std::string> const & options)
 {
 	int option = 0;
 
@@ -226,4 +221,11 @@ void TerminalUI::UI_EndTurn()
 	options.push_back("Next turn");
 
 	this->promptSelect(options);
+}
+
+int TerminalUI::UI_ChooseCategory(Wheel::StringVectorType const & categories) {
+	cout << "\n---------------------------------------------------------------------\n";
+	cout << "<< Wheel: You choose the question category." << "\n";
+
+	return this->promptSelect(categories);
 }

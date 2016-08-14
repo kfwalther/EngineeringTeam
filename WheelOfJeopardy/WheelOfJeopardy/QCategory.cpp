@@ -34,13 +34,11 @@ void QCategory::Action(GameSession * session) {
 	if (!(this->categoryQuestions.empty())) {
 		// Push the Question content to the GameSession instance, accessible via the UserInterface.
 		session->setCurrentQuestion(this->getQuestionInfo());
-		// TODO: Using the UI_PlaceHolder function here, but can probably rename this UI function.
-		//session->getUserInterfaceHandle()->UI_PlaceHolder("QCategory::Action - Question: " + this->getQuestionInfo().getQuestion());
 		this->categoryQuestions.pop();
 	}
 	else {
 		std::cout << "QCategory::Action - Category Empty, rerolling\n";//testcode
-		//tell the user that this category is empty, will automatically spin again
+		// TODO: tell the user that this category is empty, will automatically spin again
 	}
 
 }

@@ -23,7 +23,6 @@ public:
 	virtual ~TerminalUI();
 
 	// Define the UserInterface object methods.
-	virtual void chooseCategory(int category);
 	virtual bool submitAnswer(int answer);
 	virtual void endGame();
 	virtual std::vector<std::string> listCategories();
@@ -31,7 +30,7 @@ public:
 
 	virtual void promptPreGame();
 	virtual void displayPlayerInfo();
-	virtual int promptSelect(std::vector<std::string>& options);
+	virtual int promptSelect(std::vector<std::string> const & options);
 
 	// User Interface Handlers
 	virtual void UI_StartTurn();
@@ -48,4 +47,6 @@ public:
 	virtual void UI_CorrectAnswer();
 	virtual void UI_WrongAnswer();
 	virtual void UI_EndTurn();
+	virtual int UI_ChooseCategory(Wheel::StringVectorType const & categories);
+
 };

@@ -77,9 +77,18 @@ void Player::changeScore(int const value)
 	this->score += value;
 }
 
-void Player::chooseCategory()
+void Player::chooseCategory(int const categoryIndex)
 {
-	this->gameSessionHandle->getGameRoom()->getWheel()->listCategories();//returns a vector of strings, needs to be pushed to UI
+	// Set the current question, based on the chosen category.
+	std::vector<Sector *> sectorVector = this->gameSessionHandle->getGameRoom()->getWheel()->getSectors();
+	if (sectorVector.at(categoryIndex - 1)->getSectorType() == SectorType::CATEGORY) {
+		// Provide the gameSession instance with the current question.
+		sectorVector.at(categoryIndex - 1)->Action(this->gameSessionHandle);
+	} else {
+		std::cerr << "Player::chooseCategory: Something went wrong! Chosen category didn't map to a Category sector in the Wheel object!" << std::endl;
+	}
+
+	//this->gameSessionHandle->getGameRoom()->getWheel()->listCategories();//returns a vector of strings, needs to be pushed to UI
 	//TODO
 	//int x = user's selection
 	//if x is between 0 and 5 (inclusive) and that category still has open questions

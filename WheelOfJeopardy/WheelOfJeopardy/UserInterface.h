@@ -47,7 +47,8 @@ public:
 	virtual void UI_CorrectAnswer() = 0;
 	virtual void UI_WrongAnswer() = 0;
 	virtual void UI_EndTurn() = 0;
-	
+	virtual int UI_ChooseCategory(Wheel::StringVectorType const & categories) = 0;
+
 	virtual void UI_PlaceHolder(std::string input)
 	{
 		std::cout << "\n---------------" << "\n";

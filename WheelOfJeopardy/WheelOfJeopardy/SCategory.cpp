@@ -25,13 +25,13 @@ SCategory::~SCategory()
 //session is a pointer to the instace that contains the player list
 //front() returns a pointer to the first (current) player
 void SCategory::Bankrupt(GameSession * session) {
-	session->getPlayers().front()->setScore(0);
-	session->getPlayers().front()->setFreeTurnToken(0);
+	session->getCurrentPlayer()->setScore(0);
+	session->getCurrentPlayer()->setFreeTurnToken(0);
 	session->changeTurns();
 }
 
 void SCategory::LoseTurn(GameSession * session) {
-	if(session->getPlayers().front()->hasFreeTurnToken()){
+	if(session->getCurrentPlayer()->hasFreeTurnToken()){
 		//TODO
 		//ask player if want to use FreeTurnToken
 		//if yes
@@ -45,16 +45,16 @@ void SCategory::LoseTurn(GameSession * session) {
 }
 
 void SCategory::FreeTurn(GameSession * session) {
-	session->getPlayers().front()->addFreeTurnToken();
+	session->getCurrentPlayer()->addFreeTurnToken();
 }
 
 void SCategory::PlayerChoice(GameSession * session) {
-	session->getPlayers().front()->chooseCategory();
+	//session->getCurrentPlayer()->chooseCategory();
 }
 
 void SCategory::OpponentChoice(GameSession * session) {
 	//back() returns a pointer to the opponent player
-	session->getPlayers().back()->chooseCategory();
+	//session->getPlayers().back()->chooseCategory();
 }
 
 void SCategory::SpinAgain(GameSession * session) {
@@ -62,8 +62,8 @@ void SCategory::SpinAgain(GameSession * session) {
 }
 
 void SCategory::Action(GameSession * session) {	//overrides Sector::Action(GameSession *), calls the appropriate function and forwards the GameSession pointer to it
-		std::cout<<"SCategory::Action - Spins remaining: "<< session->getGameRoom()->getWheel()->getSpinsLeft() << std::endl;//testcode
-		std::cout << "SCategory::Action - Player "<<session->getPlayers().front()->getName()<<" landed On:"<<sectorName << std::endl;//testcode
+		std::cout << "SCategory::Action - Spins remaining: " << session->getGameRoom()->getWheel()->getSpinsLeft() << std::endl;//testcode
+		std::cout << "SCategory::Action - Player " << session->getCurrentPlayer()->getName() << " landed On:" << sectorName << std::endl;//testcode
 
         if (this->sectorName == "Bankrupt") {
 			this->Bankrupt(session);

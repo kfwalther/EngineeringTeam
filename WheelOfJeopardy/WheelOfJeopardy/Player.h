@@ -26,7 +26,7 @@ struct Player
 	void spinWheel(int);//testcode to force the sector that the wheel will spin to
 	void useFreeTurnToken();
 	void changeScore(int const value);
-	void chooseCategory();
+	void chooseCategory(int const categoryIndex);
 	void submitAnswer();
 	void setScore(int const value);
 	double getScore();

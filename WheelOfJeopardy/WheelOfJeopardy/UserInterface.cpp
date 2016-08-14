@@ -15,6 +15,7 @@ UserInterface::UserInterface(Player * const & player1, Player * const & player2)
 {
 	this->m_players.push_back(player1);
 	this->m_players.push_back(player2);
+
 	// Give the GameSession instance a reference to the UserInterface instance.
 	this->m_session->setUserInterfaceHandle(this);
 }
@@ -112,6 +113,8 @@ void UserInterface::runGameLoop()
 				{
 					this->UI_PlaceHolder("Answer a category question");
 				}
+
+				this->UI_EndTurn();
 			}
 			else
 			{

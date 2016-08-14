@@ -42,12 +42,13 @@ public:
 	virtual void UI_AddFreeTurn() = 0;
 	virtual void UI_Bankrupt() = 0;
 	virtual void UI_SpinAgain() = 0;
+	virtual void UI_EndTurn() = 0;
 	
 	virtual void UI_PlaceHolder(std::string input)
 	{
-		std::cout << "---------------" << "\n";
+		std::cout << "\n---------------" << "\n";
 		std::cout << "PlaceHolder: " << input << "\n";
-		std::cout << "---------------" << "\n";
+		std::cout << "---------------" << "\n\n";
 	}
 
 protected:

@@ -43,4 +43,5 @@ public:
 	virtual void UI_AddFreeTurn();
 	virtual void UI_Bankrupt();
 	virtual void UI_SpinAgain();
+	virtual void UI_EndTurn();
 };

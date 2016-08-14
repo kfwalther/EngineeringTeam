@@ -31,7 +31,7 @@ bool TerminalUI::submitAnswer(int answer)
 
 void TerminalUI::endGame()
 {
-
+	this->m_endGame = this->m_session->terminateGameplay();
 }
 
 std::vector<std::string> TerminalUI::listCategories()
@@ -137,7 +137,7 @@ void TerminalUI::UI_SpinWheel()
 void TerminalUI::UI_Category(std::string category)
 {
 	cout << "\n---------------------------------------------------------------------\n";
-	cout << "<< Wheel: landed on category -> " << category << "\n";
+	cout << "<< Wheel: Landed on category -> " << category << "\n";
 }
 
 void TerminalUI::UI_Question(Question & question)

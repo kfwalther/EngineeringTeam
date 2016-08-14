@@ -83,12 +83,12 @@ bool const Wheel::isSpinnable() {
 	// Iterate through the sectors and check if any QCategory is
 	// empty. When there are no questions remaining noQuestions will
 	// be set to true.
-	for (std::vector<Sector *>::iterator iter = this->sectors->begin(); iter != this->sectors->begin(); ++iter) {
-		if ((*iter)->getType() == 1) {
-			noQuestions &= (*iter)->isEmpty();
+	for (auto const currentSector : (*this->sectors)) {
+		if (currentSector->getSectorType() == SectorType::CATEGORY) {
+			noQuestions &= currentSector->isEmpty();
 		}
 	}
-	return ((!noQuestions) | (this->counter > 0));
+	return ((!noQuestions) && (this->counter > 0));
 }
 
 int const Wheel::getSize() {

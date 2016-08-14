@@ -11,7 +11,6 @@
 
 // Define the constructor and destructor.
 Player::Player(std::string const playerName)
-	: m_lostTurn(false)
 {
 	this->username = playerName;
 	this->score=0;
@@ -121,21 +120,6 @@ void Player::addFreeTurnToken()
 int Player::getId()
 {
 	return this->playerID;
-}
-
-bool Player::hasLostTurn()
-{
-	return m_lostTurn;
-}
-
-void Player::clearLostTurn()
-{
-	this->m_lostTurn = false;
-}
-
-void Player::loseTurn()
-{
-	this->m_lostTurn = true;
 }
 
 int Player::getNumTokens()

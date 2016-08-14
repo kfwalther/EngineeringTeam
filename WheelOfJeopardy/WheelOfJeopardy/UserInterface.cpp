@@ -51,7 +51,9 @@ void UserInterface::runGameLoop()
 				{
 					// Spin the wheel
 					this->UI_SpinWheel();
-					SectorType sectorType; std::string sectorName;
+					std::string category;
+					SectorType sectorType; 
+					std::string sectorName;
 					std::tie (sectorType, sectorName) = m_session.spinWheel(m_currentPlayer->getId());
 					spinWheel = false;
 
@@ -60,7 +62,8 @@ void UserInterface::runGameLoop()
 					{
 					case SectorType::CATEGORY:
 						this->UI_PlaceHolder("Category");
-						answerCategory = true;
+						answerCategory = true; 
+						category = sectorName;
 						break;
 					case SectorType::LOSE_TURN:
 

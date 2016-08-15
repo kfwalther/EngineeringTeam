@@ -162,7 +162,16 @@ void UserInterface::runGameLoop()
 				else
 				{
 					this->UI_WrongAnswer();
-					spinWheel = false;
+
+					// Give the player a chance to use a free turn token
+					if (m_currentPlayer->hasFreeTurnToken() && this->UI_AskUseToken())
+					{
+						m_currentPlayer->useFreeTurnToken();
+						spinWheel = true;
+						this->UI_UseToken();
+					}
+					else 
+						spinWheel = false;
 				}
 			}
 

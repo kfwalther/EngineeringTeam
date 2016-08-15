@@ -38,6 +38,10 @@ int Player::getScore()
 	return this->score;
 }
 
+int Player::numOfFreeTurnToken() {
+	return this->totalTokens;
+}
+
 void Player::joinGame(Player * host)
 {
 	// Give the current player the gameSessionHandle (created by the host).

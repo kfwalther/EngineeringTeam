@@ -13,27 +13,41 @@
 
 #include "UserInterface.h"
 
-class TerminalUI : UserInterface
+#include "Sector.h"
+
+class TerminalUI 
 {
 public:
 	// Define the constructor and destructor.
-	TerminalUI();
+	TerminalUI(GameSession * session);
 	virtual ~TerminalUI();
 
 	// Define the UserInterface object methods.
-	/*virtual bool createGame();
-	virtual bool joinGame(int gameId);
-	virtual std::vector<std::string> listGames();*/
-	virtual void chooseCategory(int category);
 	virtual bool submitAnswer(int answer);
-	virtual void spinWheel();
-	virtual bool useFreeTurnToken();
 	virtual void endGame();
 	virtual std::vector<std::string> listCategories();
-	virtual bool startGame();
+	virtual void run();
 
 	virtual void promptPreGame();
+	virtual void displayPlayerInfo();
+	virtual int promptSelect(std::vector<std::string> const & options);
 
-private:
+	// User Interface Handlers
+	void UI_StartTurn(int round, Player* currentPlayer);
+	virtual void UI_LostTurn();
+	virtual void UI_SpinWheel();
+	virtual void UI_Category(std::string category);
+	virtual void UI_Question(Question & question);
+	virtual bool UI_AskUseToken();
+	virtual void UI_UseToken();
+	virtual void UI_LoseTurn();
+	virtual void UI_AddFreeTurn();
+	virtual void UI_Bankrupt();
+	virtual void UI_SpinAgain();
+	virtual void UI_CorrectAnswer();
+	virtual void UI_WrongAnswer();
+	virtual void UI_EndTurn();
+	virtual int UI_ChooseCategory(Wheel::StringVectorType const & categories);
+	virtual void UI_GameSummary();
 
 };

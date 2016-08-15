@@ -14,6 +14,7 @@
 #include "GameRoom.h"
 //#include "UserInterface.h"
 #include "Player.h"
+#include "TerminalUI.h"
 
 // Forward declaration
 struct Player;
@@ -39,6 +40,7 @@ struct GameSession
 protected:
 	static int uniqueID;//ensures sessionID is unique
 	int sessionID;
+	TerminalUI * ui;
 	PlayerListType * players;
 	// currentPlayer value matches Player.playerID for current player.
 	int currentPlayer;

@@ -5,6 +5,9 @@
 * @author Joshua Griffith
 * @date 2016
 */
+
+#include <map>
+
 #include "UserInterface.h"
 
 UserInterface::UserInterface(Player * const & player1, Player * const & player2)
@@ -56,78 +59,78 @@ void UserInterface::runGameLoop()
 			// Take action depending on wheel spin sector
 			switch (sectorType)
 			{
-			case SectorType::CATEGORY:
-				this->UI_Category(sectorName);
-				answerCategory = true;
-				break;
-			case SectorType::LOSE_TURN:
-				// Give the player a chance to use a free turn token
-				if (m_currentPlayer->hasFreeTurnToken() && this->UI_AskUseToken())
-				{
-					m_currentPlayer->useFreeTurnToken();
+				case SectorType::CATEGORY: {
+					this->UI_Category(sectorName);
+					answerCategory = true;
+					break;
+				}
+				case SectorType::LOSE_TURN: {
+					// Give the player a chance to use a free turn token
+					if (m_currentPlayer->hasFreeTurnToken() && this->UI_AskUseToken())
+					{
+						m_currentPlayer->useFreeTurnToken();
+						spinWheel = true;
+						this->UI_UseToken();
+					}
+					else
+					{
+						//m_currentPlayer->loseTurn();
+						this->UI_LoseTurn();
+					}
+					break;
+				}
+				case SectorType::FREE_TURN: {
+					// SCategory::Action performs this, don't do it twice!
+					//m_currentPlayer->addFreeTurnToken();
+					this->UI_AddFreeTurn();
+					spinWheel = true;	// Player spins again.
+					break;
+				}
+				case SectorType::BANKRUPT: {
+					m_session->bankrupt(m_currentPlayer->getId());
+					this->UI_Bankrupt();
+					break;
+				}
+				case SectorType::PLAYER_CHOICE: {
+					// Provide a list of available categories and let the current player choose.
+					this->m_session->getCurrentPlayer()->chooseCategory(
+							this->UI_ChooseCategory(m_session->getGameRoom()->getWheel()->listCategories()) - 1);
+					answerCategory = true;
+					break;
+				}
+				case SectorType::OPP_CHOICE: {
+					// Tell player what they landed on.
+					this->UI_OpponentChoice();
+					Wheel::StringVectorType const catVector = this->m_session->getGameRoom()->getWheel()->listCategories();
+					// Initialize votes vector.
+					std::vector<int> votes(catVector.size(), 0);
+					// Loop through each player.
+					for (auto const & currentPlayer : this->m_players) {
+						// Choose all opposing players to poll for a vote.
+						if (currentPlayer != this->m_currentPlayer) {
+							int chosenIndex = this->UI_OpposingVote(catVector, currentPlayer);
+							votes[chosenIndex - 1]++;
+						}
+					}
+					// Get index of most-voted category.
+					int const topCategoryIndex = std::distance(
+							std::begin(votes), std::max_element(std::begin(votes), std::end(votes)));
+					// Notify the players of the chosen Category.
+					this->UI_OpponentVoteWinner(catVector[topCategoryIndex]);
+					// Choose the next question for the chosen category.
+					this->m_session->getCurrentPlayer()->chooseCategory(topCategoryIndex);
+					answerCategory = true;
+					break;
+				}
+				case SectorType::SPIN_AGAIN: {
 					spinWheel = true;
-					this->UI_UseToken();
+					this->UI_SpinAgain();
+					break;
 				}
-				else
-				{
-					//m_currentPlayer->loseTurn();
-					this->UI_LoseTurn();
+				default: {
+					this->UI_PlaceHolder("Default");
+					break;
 				}
-				break;
-			case SectorType::FREE_TURN:
-				// SCategory::Action performs this, don't do it twice!
-				//m_currentPlayer->addFreeTurnToken();
-				this->UI_AddFreeTurn();
-				spinWheel = true;	// Player spins again.
-				break;
-			case SectorType::BANKRUPT:
-				m_session->bankrupt(m_currentPlayer->getId());
-				this->UI_Bankrupt();
-				break;
-			case SectorType::PLAYER_CHOICE:
-				// Provide a list of available categories and let the current player choose 
-				this->m_session->getCurrentPlayer()->chooseCategory(this->UI_ChooseCategory(m_session->getGameRoom()->getWheel()->listCategories()));
-				answerCategory = true;
-				break;
-			case SectorType::OPP_CHOICE:
-				// NOTE: Now this one is more complex... we want to let all 
-				// opponent (non-current) players vote on the category to choose
-				//
-				// std::vector<std::categories> categories = m_session->getCategories();
-				// 
-				// std::map<std::string, int> votes;
-				// 
-				// for (std::vector<Player*>::iterator iter_2 = m_players.begin(); iter_2 != m_players.end(); ++iter_2)
-				// {
-				//		if(*iter_2 != m_currentPlayer)
-				//		{
-				//			std::string choice = this->UI_OppVote(categories, *iter_2);
-				//			votes[choice]++;
-				//		}
-				// }
-				//
-				// int largestVote = votes[0].second;
-				// std::string vote = votes[1].first;
-				// for (int i = 0; i < votes.size(); i++)
-				// {
-				//		if(votes[i].second > largestVote)
-				//			vote = votes[i].first;
-				// }
-				// 
-				// this->UI_OppVoteWinner(vote);
-				// m_session.voteCategory(vote);
-				//
-
-				this->UI_PlaceHolder("Opp Choice");
-				answerCategory = true;
-				break;
-			case SectorType::SPIN_AGAIN:
-				spinWheel = true;
-				this->UI_SpinAgain();
-				break;
-			default:
-				this->UI_PlaceHolder("Default");
-				break;
 			}
 
 			//

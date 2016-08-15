@@ -230,6 +230,23 @@ int TerminalUI::UI_ChooseCategory(Wheel::StringVectorType const & categories) {
 	return this->promptSelect(categories);
 }
 
+void TerminalUI::UI_OpponentChoice() {
+	cout << "\n---------------------------------------------------------------------\n";
+	cout << "<< Wheel: Your opponents choose the question category." << "\n";
+}
+
+int TerminalUI::UI_OpposingVote(Wheel::StringVectorType const & categories, Player * const & player) {
+	cout << "\n---------------------------------------------------------------------\n";
+	cout << "<< Wheel: You choose the question category." << "\n";
+
+	return this->promptSelect(categories);
+}
+
+void TerminalUI::UI_OpponentVoteWinner(std::string const & categoryName) {
+	cout << "\n---------------------------------------------------------------------\n";
+	cout << "<< Your opponents chose the following category: " << categoryName << "\n";
+}
+
 void TerminalUI::UI_GameSummary() {
 	cout << "\n";
 	cout << "&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&\n";

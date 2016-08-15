@@ -48,6 +48,8 @@ public:
 	virtual void UI_WrongAnswer();
 	virtual void UI_EndTurn();
 	virtual int UI_ChooseCategory(Wheel::StringVectorType const & categories);
+	virtual void UI_OpponentChoice();
+	virtual int UI_OpposingVote(Wheel::StringVectorType const & categories, Player * const & player);
+	virtual void UI_OpponentVoteWinner(std::string const & categoryName);
 	virtual void UI_GameSummary();
-
 };

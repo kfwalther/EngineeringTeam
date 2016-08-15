@@ -80,9 +80,9 @@ void Player::chooseCategory(int const categoryIndex)
 {
 	// Set the current question, based on the chosen category.
 	std::vector<Sector *> sectorVector = this->gameSessionHandle->getGameRoom()->getWheel()->getSectors();
-	if (sectorVector.at(categoryIndex - 1)->getSectorType() == SectorType::CATEGORY) {
+	if (sectorVector.at(categoryIndex)->getSectorType() == SectorType::CATEGORY) {
 		// Provide the gameSession instance with the current question.
-		sectorVector.at(categoryIndex - 1)->Action(this->gameSessionHandle);
+		sectorVector.at(categoryIndex)->Action(this->gameSessionHandle);
 	} else {
 		std::cerr << "Player::chooseCategory: Something went wrong! Chosen category didn't map to a Category sector in the Wheel object!" << std::endl;
 	}

@@ -58,7 +58,7 @@ protected:
 	int currentPlayerIndex;
 	int currentPlayer;
 	int otherPlayer;
-	int rounds;
+	int round;
 	GameRoom * gameRoomHandle;
 	UserInterface * userInterfaceHandle;
 	Question currentQuestion;

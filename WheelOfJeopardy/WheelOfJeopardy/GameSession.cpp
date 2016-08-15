@@ -14,7 +14,7 @@ GameSession::GameSession()
 {
 	this->gameRoomHandle = new GameRoom();
 	this->players = new GameSession::PlayerVectorType;
-	this->rounds=2; //number of rounds
+	this->round=1; //number of round
 	this->sessionID=GameSession::uniqueID;
 	GameSession::uniqueID++;
 
@@ -35,10 +35,10 @@ bool GameSession::initiateGameplay()
 {
 	// Set the current player.
 	this->currentPlayerIndex = 0;
-	for (int i = 0; i < this->rounds; i++) {
+//	for (int i = 0; i < this->round; i++) {
 		//delete the old GameRoom, and create a new one for round 2.
 		this->gameRoomHandle = new GameRoom();	
-	}
+//	}
 	return true;
 }
 
@@ -47,8 +47,14 @@ bool GameSession::terminateGameplay()
 	// Check to see if the current round can be terminated.
 	if (this->gameRoomHandle->getWheel()->isSpinnable())
 		return false;
-
-	return true;
+	else {
+		if (this->round == 1) {
+			this->round++;
+			this->gameRoomHandle = new GameRoom();
+			return false;
+		}
+		return true;
+	}
 }
 
 void GameSession::changeTurns()
@@ -108,7 +114,7 @@ int GameSession::getWheelSpinsLeft()
 
 int GameSession::getRoundNumber()
 {
-	return 1;
+	return this->round;
 }
 
 UserInterface * const & GameSession::getUserInterfaceHandle()
@@ -141,13 +147,13 @@ bool GameSession::answerQuestion() {
 	// Check the player's answer against the correct answer.
 	if (this->currentQuestion.checkAnswer(response)) {
 		// Correct answer.
-		score = this->currentQuestion.getPoints();
+		score = this->round * this->currentQuestion.getPoints();//round two points are doubled
 		this->getCurrentPlayer()->changeScore(score);
 		return true;
 	} else {
 		// Incorrect answer.
 		//score = -1 * this->currentQuestion.getPoints(); //the score has already been changes to negative inside the Question class, this statement reverted it back to positive
-		score = this->currentQuestion.getPoints();
+		score = this->round * this->currentQuestion.getPoints();
 		this->getCurrentPlayer()->changeScore(score);
 		this->changeTurns();
 		return false;

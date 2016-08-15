@@ -51,12 +51,9 @@ Wheel::~Wheel()
 Sector * const & Wheel::Spin(int const sectorIndex)
 {
 	//TODO only allow QSectors that still have valid questions be picked
-	if ((sectorIndex >= 0) && (sectorIndex < this->wheelSize)) {//get nth sector where n=sectorIndex
-		return (sectors->at(sectorIndex));
-	} else {
-		std::cerr << "Invalid index provided." << std::endl;
-		return (sectors->at(0));//this should probably be null or something else
-	}
+		this->counter--;
+		m_currentSector = sectors->at(sectorIndex);
+		return (m_currentSector);
 }
 
 Sector * const & Wheel::Spin()

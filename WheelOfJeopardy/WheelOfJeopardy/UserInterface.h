@@ -10,6 +10,7 @@
 
 #include <string>
 #include <vector>
+#include <thread>
 
 #include "GameSession.h"
 #include "Player.h"
@@ -32,6 +33,8 @@ public:
 	virtual void endGame() = 0;
 	virtual bool startGame();
 
+	virtual void tick();
+
 	// Pure virtual UI handlers
 	virtual void UI_StartTurn() = 0;
 	virtual void UI_LostTurn() = 0;
@@ -49,6 +52,8 @@ public:
 	virtual void UI_EndTurn() = 0;
 	virtual int UI_ChooseCategory(Wheel::StringVectorType const & categories) = 0;
 	virtual void UI_GameSummary() = 0;
+	virtual void UI_Timer(double time) = 0;
+	virtual void UI_EndTimer() = 0;
 
 	virtual void UI_PlaceHolder(std::string input)
 	{
@@ -64,5 +69,9 @@ protected:
 	bool m_endGame;
 	std::vector<Player *> m_players;
 	Player * m_currentPlayer;
+	bool m_answering;
+
+private:
+	std::thread m_timerThread;
 };
 

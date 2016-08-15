@@ -49,5 +49,6 @@ public:
 	virtual void UI_EndTurn();
 	virtual int UI_ChooseCategory(Wheel::StringVectorType const & categories);
 	virtual void UI_GameSummary();
-
+	virtual void UI_Timer(double time);
+	virtual void UI_EndTimer();
 };

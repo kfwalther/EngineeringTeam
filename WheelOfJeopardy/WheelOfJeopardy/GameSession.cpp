@@ -146,7 +146,8 @@ bool GameSession::answerQuestion() {
 		return true;
 	} else {
 		// Incorrect answer.
-		score = -1 * this->currentQuestion.getPoints();
+		//score = -1 * this->currentQuestion.getPoints(); //the score has already been changes to negative inside the Question class, this statement reverted it back to positive
+		score = this->currentQuestion.getPoints();
 		this->getCurrentPlayer()->changeScore(score);
 		this->changeTurns();
 		return false;

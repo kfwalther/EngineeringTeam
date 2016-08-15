@@ -52,4 +52,6 @@ public:
 	virtual int UI_OpposingVote(Wheel::StringVectorType const & categories, Player * const & player);
 	virtual void UI_OpponentVoteWinner(std::string const & categoryName);
 	virtual void UI_GameSummary();
+	virtual void UI_Timer(double time);
+	virtual void UI_EndTimer();
 };

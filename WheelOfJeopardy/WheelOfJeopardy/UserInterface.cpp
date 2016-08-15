@@ -14,7 +14,9 @@ UserInterface::UserInterface(Player * const & player1, Player * const & player2)
 	: m_session(player1->getGameSession()),
 	  m_gameStarted(false),
 	  m_exit(false),
-	  m_endGame(false)
+	  m_endGame(false),
+	  m_answering(false),
+	  m_timerThread(&UserInterface::tick, this)
 {
 	this->m_players.push_back(player1);
 	this->m_players.push_back(player2);
@@ -150,6 +152,8 @@ void UserInterface::runGameLoop()
 
 				this->UI_Question(m_session->getCurrentQuestion());
 
+				m_answering = true;
+
 				if (m_session->answerQuestion())
 				{
 					this->UI_CorrectAnswer();
@@ -176,6 +180,30 @@ void UserInterface::runGameLoop()
 
 	// Print end of game info.
 	this->UI_GameSummary();
+}
+
+void UserInterface::tick()
+{
+	while (!m_exit)
+	{
+		while (m_answering)
+		{
+			double time = m_session->getCurrentQuestion().getTime();
+			
+			if ((int)time != 0)
+			{
+				this->UI_Timer(time);
+				std::this_thread::sleep_for(std::chrono::seconds(1));
+			}
+			else
+			{
+				m_answering = false;
+				this->UI_EndTimer();
+			}
+
+		}
+		std::this_thread::sleep_for(std::chrono::seconds(1));
+	}
 }
 
 bool UserInterface::startGame()

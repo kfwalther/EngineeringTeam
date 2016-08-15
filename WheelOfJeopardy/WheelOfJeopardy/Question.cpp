@@ -78,3 +78,9 @@ bool Question::checkAnswer(std::string & playerAnswer)
 	}
 }
 
+
+double Question::getTime()
+{
+	double const elapsedTime = std::difftime(std::time(nullptr), this->startTime);
+	return std::max(0.0, (this->timer - elapsedTime));
+}

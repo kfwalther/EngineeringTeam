@@ -21,6 +21,7 @@ public:
 	int getPoints(void);
 	bool getAvailable(void);
 	void setQuestion(std::string q);
+	double getTime();
 
 	/** Functional methods. */
 	bool checkAnswer(std::string & playerAnswer);

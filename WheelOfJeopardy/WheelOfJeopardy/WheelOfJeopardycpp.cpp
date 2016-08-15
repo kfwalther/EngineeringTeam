@@ -40,5 +40,6 @@ void main()
 	//Parse.parseCategory(Q, c);
 	//// Print some output.
 	//cout << c << " " << Q.size() << endl;
+	exit(0);
 }
 

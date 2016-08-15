@@ -170,6 +170,9 @@ void UserInterface::runGameLoop()
 
 		this->UI_EndTurn();
 	}
+
+	// Print end of game info.
+	this->UI_GameSummary();
 }
 
 bool UserInterface::startGame()

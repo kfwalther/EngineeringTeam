@@ -48,5 +48,6 @@ public:
 	virtual void UI_WrongAnswer();
 	virtual void UI_EndTurn();
 	virtual int UI_ChooseCategory(Wheel::StringVectorType const & categories);
+	virtual void UI_GameSummary();
 
 };

@@ -17,7 +17,7 @@
 Wheel::Wheel()
 {
 	this->wheelSize = 12;	//number of different sectors
-	this->counter = 10; //number of wheel spins //testcode, switch to 50 for realcode
+	this->counter = 5; //number of wheel spins //testcode, switch to 50 for realcode
 	this->sectors = new Wheel::SectorVectorType;	//Vector containing all sectors
 	this->categories = new Wheel::StringVectorType;	//Vector containing the names of the sectors
 	srand(static_cast<unsigned int>(std::time(NULL)));
@@ -83,10 +83,9 @@ bool const Wheel::isSpinnable() {
 	// Iterate through the sectors and check if any QCategory is
 	// empty. When there are no questions remaining noQuestions will
 	// be set to true.
-
-	for (std::vector<Sector *>::iterator iter = this->sectors->begin(); iter != this->sectors->begin(); ++iter) {
-		if ((*iter)->getType() == 1) {
-			noQuestions &= (*iter)->isEmpty();
+	for (auto const currentSector : (*this->sectors)) {
+		if (currentSector->getSectorType() == SectorType::CATEGORY) {
+			noQuestions &= currentSector->isEmpty();
 		}
 	}
 	return ((!noQuestions) && (this->counter > 0));

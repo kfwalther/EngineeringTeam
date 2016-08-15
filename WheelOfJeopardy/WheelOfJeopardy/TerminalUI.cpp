@@ -229,3 +229,23 @@ int TerminalUI::UI_ChooseCategory(Wheel::StringVectorType const & categories) {
 
 	return this->promptSelect(categories);
 }
+
+void TerminalUI::UI_GameSummary() {
+	cout << "\n";
+	cout << "&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&\n";
+	cout << "&&       END OF GAME SUMMARY      &&\n";
+	cout << "&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&\n";
+	cout << "\n";
+	cout << "---------------------------------------------------------------------\n";
+	cout << ": Player Data" << "\n";
+	cout << "---------------------------------------------------------------------\n";
+
+	// Get list of all players.
+	GameSession::PlayerVectorType players = this->m_session->getPlayers();
+	for (size_t i = 0; i < players.size(); i++) {
+		cout << "<< Player " << (i+1) << ": " << players.at(i)->getName() << "\n";
+		cout << "<< Tokens: " << players.at(i)->getNumTokens() << "\n";
+		cout << "<< Score: " << players.at(i)->getScore() << "\n";
+		cout << "\n";
+	}
+}

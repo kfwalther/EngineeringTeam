@@ -29,7 +29,7 @@ public:
 	virtual void runGameLoop();
 
 	virtual bool useFreeTurnToken();
-	virtual void endGame();
+	virtual void endGame() = 0;
 	virtual bool startGame();
 
 	// Pure virtual UI handlers

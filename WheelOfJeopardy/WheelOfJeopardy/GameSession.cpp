@@ -47,7 +47,7 @@ bool GameSession::terminateGameplay()
 	// Check to see if the current round can be terminated.
 	if (this->gameRoomHandle->getWheel()->isSpinnable())
 		return false;
-	
+
 	return true;
 }
 

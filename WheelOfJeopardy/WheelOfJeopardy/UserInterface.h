@@ -23,7 +23,7 @@ class UserInterface
 {
 public:
 	// Define the constructor and destructor.
-	UserInterface(Player * const & player1, Player * const & player2);
+	UserInterface(std::vector<Player*>& players);
 	virtual ~UserInterface();
 
 	// Define the UserInterface object methods.

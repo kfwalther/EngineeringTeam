@@ -12,8 +12,8 @@
 using std::cout;
 using std::cin;
 
-TerminalUI::TerminalUI(Player * const & player1, Player * const & player2) : 
-		UserInterface(player1, player2) {
+TerminalUI::TerminalUI(std::vector<Player*>& players) :
+		UserInterface(players) {
 	cout << "*********************************\n";
 	cout << "*       WHEEL OF JEOPARDY       *\n";
 	cout << "*********************************\n";

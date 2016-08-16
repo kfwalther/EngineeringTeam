@@ -21,33 +21,42 @@ using namespace std;
  */
 void main()
 {
-	std::string player1 = "Player 1";
-	std::string player2 = "Player 2";
+	std::vector<Player*> players;
+	std::string input;
 
-	cout << "Enter a name for Player 1: ";
-	cin >> player1;
+	cout << "Enter a name for player 1: ";
+	cin >> input;
+	players.push_back(new Player(input));
+	players.at(0)->createGame();
 
-	cout << "Enter a name for Player 2: ";
-	cin >> player2;
+	cout << "Enter a name for player 2: ";
+	cin >> input;
+	players.push_back(new Player(input));
 
-	Player * player_Player1 = new Player(player1);
-	player_Player1->createGame();
+	// logic is available  for multiple players, possible engine changes needed
+	/*
+	bool add = true;
+	while (add && players.size() < 6)
+	{
+		cout << "Add more players? (Y/n): ";
+		cin >> input;
 
-	Player * player_Player2 = new Player(player2);
+		if (input == "Y")
+		{
+			add = true;
+			cout << "Enter a name for player " << players.size() + 1 << " : ";
+			cin >> input;
+			players.push_back(new Player(input));
+		}
+		else
+		{
+			add = false;
+		}
+	} */
 
-	TerminalUI * userInterface = new TerminalUI(player_Player1, player_Player2);
+	TerminalUI * userInterface = new TerminalUI(players);
 	userInterface->run();
 
-	//// Define a queue container of question objects.
-	//queue<Question> Q;
-	//// Define the category input file to use.
-	//string c = "category1.csv";
-	//// Define the parser object.
-	//parser Parse;
-	//// Call the parser for the given category.
-	//Parse.parseCategory(Q, c);
-	//// Print some output.
-	//cout << c << " " << Q.size() << endl;
 	exit(0);
 }
 

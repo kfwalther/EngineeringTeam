@@ -10,16 +10,15 @@
 
 #include "UserInterface.h"
 
-UserInterface::UserInterface(Player * const & player1, Player * const & player2)
-	: m_session(player1->getGameSession()),
+UserInterface::UserInterface(std::vector<Player*>& players)
+	: m_session(players.at(0)->getGameSession()),
 	  m_gameStarted(false),
 	  m_exit(false),
 	  m_endGame(false),
 	  m_answering(false),
 	  m_timerThread(&UserInterface::tick, this)
 {
-	this->m_players.push_back(player1);
-	this->m_players.push_back(player2);
+	this->m_players = players; 
 
 	// Give the GameSession instance a reference to the UserInterface instance.
 	this->m_session->setUserInterfaceHandle(this);

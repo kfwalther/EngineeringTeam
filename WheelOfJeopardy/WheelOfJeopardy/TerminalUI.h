@@ -19,7 +19,7 @@ class TerminalUI : UserInterface
 {
 public:
 	// Define the constructor and destructor.
-	TerminalUI(Player * const & player1, Player * const & player2);
+	TerminalUI(std::vector<Player*>& players);
 	virtual ~TerminalUI();
 
 	// Define the UserInterface object methods.

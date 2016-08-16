@@ -150,7 +150,8 @@ std::string TerminalUI::UI_AnswerQuestion()
 {
 	std::string response = "";
 	cout << "Answer: ";
-	cin >> response;
+	std::cin.ignore();
+	std::getline(std::cin, response);
 
 	return response;
 }

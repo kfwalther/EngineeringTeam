@@ -11,10 +11,10 @@
 #include "GameRoom.h"
 
 // Define the constructor and destructor.
-GameRoom::GameRoom()
+GameRoom::GameRoom(std::string const & inputFileName)
 {
 	// Create the Wheel instance.
-	this->wheelHandle = new Wheel();
+	this->wheelHandle = new Wheel(inputFileName);
 	// Initialize a vector to hold the QCategory objects.
 	GameBoard::QCategoryVectorType qCategoryVector;
 	// Copy only the QCategory objects from the Wheel into the vector.

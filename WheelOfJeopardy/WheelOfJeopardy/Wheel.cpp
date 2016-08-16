@@ -14,7 +14,7 @@
 
 
 // Define the constructor and destructor.
-Wheel::Wheel()
+Wheel::Wheel(std::string const & inputFileName)
 {
 	this->wheelSize = 12;	//number of different sectors
 	this->counter = 5; //number of wheel spins //testcode, switch to 50 for realcode
@@ -23,18 +23,20 @@ Wheel::Wheel()
 	srand(static_cast<unsigned int>(std::time(NULL)));
 	// Create the 12 wheel sectors
 	//TODO use a for loop and Question
-	this->sectors->push_back(new QCategory("category1", SectorType::CATEGORY));
-	this->categories->push_back("category1");
-	this->sectors->push_back(new QCategory("category2", SectorType::CATEGORY));
-	this->categories->push_back("category2");
-	this->sectors->push_back(new QCategory("category3", SectorType::CATEGORY));
-	this->categories->push_back("category3");
-	this->sectors->push_back(new QCategory("category4", SectorType::CATEGORY));
-	this->categories->push_back("category4");
-	this->sectors->push_back(new QCategory("category5", SectorType::CATEGORY));
-	this->categories->push_back("category5");
-	this->sectors->push_back(new QCategory("category6", SectorType::CATEGORY));
-	this->categories->push_back("category6");
+	for (int i = 1; i < 7; i++) {
+		this->sectors->push_back(new QCategory((inputFileName + std::to_string(i)), SectorType::CATEGORY));
+		this->categories->push_back(this->sectors->back()->getSectorName());
+	} 
+	//this->sectors->push_back(new QCategory("category2", SectorType::CATEGORY));
+	//this->categories->push_back("category2");
+	//this->sectors->push_back(new QCategory("category3", SectorType::CATEGORY));
+	//this->categories->push_back("category3");
+	//this->sectors->push_back(new QCategory("category4", SectorType::CATEGORY));
+	//this->categories->push_back("category4");
+	//this->sectors->push_back(new QCategory("category5", SectorType::CATEGORY));
+	//this->categories->push_back("category5");
+	//this->sectors->push_back(new QCategory("category6", SectorType::CATEGORY));
+	//this->categories->push_back("category6");
 	this->sectors->push_back(new SCategory("Bankrupt", SectorType::BANKRUPT));
 	this->sectors->push_back(new SCategory("Lose Turn", SectorType::LOSE_TURN));
 	this->sectors->push_back(new SCategory("Free Turn", SectorType::FREE_TURN));

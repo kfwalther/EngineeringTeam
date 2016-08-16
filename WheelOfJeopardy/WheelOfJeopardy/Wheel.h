@@ -24,7 +24,7 @@ struct Wheel
 	typedef std::vector<Sector *> SectorVectorType;
 
 	// Define the constructor and destructor.
-	Wheel();
+	Wheel(std::string const & inputFileName);
 	~Wheel();
 
 	// Define the Wheel object methods.

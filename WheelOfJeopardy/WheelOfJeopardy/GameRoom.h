@@ -20,7 +20,7 @@ struct GameSession;
 struct GameRoom
 {
 	// Define the constructor and destructor.
-	GameRoom();
+	GameRoom(std::string const & inputFileName);
 	~GameRoom();
 
 	// Define the GameRoom class methods.

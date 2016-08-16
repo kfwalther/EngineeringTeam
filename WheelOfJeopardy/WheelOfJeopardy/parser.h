@@ -21,6 +21,6 @@ public:
 	 * @param[in] category A string indicating the category input file.
 	 * @param[in,out] queue A queue container housing Question objects.
 	 */
-	void parseCategory(std::queue<Question> & queue, std::string const & category);
+	std::string const parseCategory(std::queue<Question> & queue, std::string const & category);
 };
 

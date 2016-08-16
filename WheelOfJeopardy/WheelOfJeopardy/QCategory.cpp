@@ -24,8 +24,8 @@ QCategory::~QCategory()
 void QCategory::initialize(std::string const & csv)
 {
 	parser * Parse = new parser();
-	Parse->parseCategory(this->categoryQuestions, (csv + ".csv"));
-	this->sectorName = csv;
+	//Parse->parseCategory(this->categoryQuestions, (csv + ".csv"));
+	this->sectorName = Parse->parseCategory(this->categoryQuestions, (csv + ".csv"));
 	this->sectorType = 1;		// 1 == QCategory, 2 == SCategory
 	delete Parse;
 }

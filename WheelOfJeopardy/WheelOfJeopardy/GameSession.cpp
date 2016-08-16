@@ -12,7 +12,7 @@
 // Define the constructor and destructor.
 GameSession::GameSession()
 {
-	this->gameRoomHandle = new GameRoom();
+	//this->gameRoomHandle = new GameRoom();
 	this->players = new GameSession::PlayerVectorType;
 	this->round=1; //number of round
 	this->sessionID=GameSession::uniqueID;
@@ -37,7 +37,7 @@ bool GameSession::initiateGameplay()
 	this->currentPlayerIndex = 0;
 //	for (int i = 0; i < this->round; i++) {
 		//delete the old GameRoom, and create a new one for round 2.
-		this->gameRoomHandle = new GameRoom();	
+		this->gameRoomHandle = new GameRoom("QuestionCategory");	
 //	}
 	return true;
 }
@@ -50,7 +50,7 @@ bool GameSession::terminateGameplay()
 	else {
 		if (this->round == 1) {
 			this->round++;
-			this->gameRoomHandle = new GameRoom();
+			this->gameRoomHandle = new GameRoom("QuestionCategoryJD");
 			return false;
 		}
 		return true;

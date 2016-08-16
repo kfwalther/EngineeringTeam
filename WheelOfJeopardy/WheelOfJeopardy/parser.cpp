@@ -14,12 +14,13 @@ parser::~parser()
 {
 }
 
-void parser::parseCategory(std::queue<Question> & queue, std::string const & category)
+std::string const parser::parseCategory(std::queue<Question> & queue, std::string const & category)
 {
 	std::string question;
 	std::string answer;
 	std::string tempPoints;
-	std::string input = category;
+	std::string input = "categories/" + category;
+	std::string categoryName;
 	std::ifstream file;
 	int points;
 
@@ -28,12 +29,12 @@ void parser::parseCategory(std::queue<Question> & queue, std::string const & cat
 	if (file.fail())
 		std::cerr << "error opening file " << std::endl;
 
-	std::getline(file, input, '\n');
+	std::getline(file, categoryName, '\n');
 
 	while (!file.eof())
 	{
-		std::getline(file, question, ',');
-		std::getline(file, answer, ',');
+		std::getline(file, question, '\n');
+		std::getline(file, answer, '\n');
 		std::getline(file, tempPoints, '\n');
 
 		points = std::atol(tempPoints.c_str());
@@ -45,4 +46,6 @@ void parser::parseCategory(std::queue<Question> & queue, std::string const & cat
 
 	//Closes the input file
 	file.close();
+
+	return categoryName;
 }

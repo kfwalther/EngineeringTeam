@@ -136,12 +136,7 @@ void GameSession::setCurrentQuestion(Question newCurrentQuestion) {
 	this->currentQuestion = newCurrentQuestion;
 }
 
-bool GameSession::answerQuestion() {
-	// Prompt user for an answer to the current question.
-	std::string response = "";
-	std::cout << "Answer: ";
-	std::cin.ignore();
-	std::getline(std::cin, response);
+bool GameSession::answerQuestion(std::string response) {
 
 	int score;
 	// Check the player's answer against the correct answer.

@@ -140,10 +140,19 @@ void TerminalUI::UI_Category(std::string category)
 	cout << "<< Wheel: Landed on category -> " << category << "\n";
 }
 
-void TerminalUI::UI_Question(Question & question)
+void TerminalUI::UI_PostQuestion(Question & question)
 {
 	cout << "\n---------------------------------------------------------------------\n";
 	cout << "<< Question: " << question.getQuestion() << "\n";
+}
+
+std::string TerminalUI::UI_AnswerQuestion()
+{
+	std::string response = "";
+	cout << "Answer: ";
+	cin >> response;
+
+	return response;
 }
 
 bool TerminalUI::UI_AskUseToken()
@@ -212,6 +221,12 @@ void TerminalUI::UI_WrongAnswer()
 	cout << "<< Question: You answered incorrectly!" << "\n";
 }
 
+void TerminalUI::UI_TimeExpired()
+{
+	cout << "\n---------------------------------------------------------------------\n";
+	cout << "<< Question: You ran out of time!" << "\n";
+}
+
 void TerminalUI::UI_EndTurn()
 {
 	cout << "\n---------------------------------------------------------------------\n";
@@ -269,10 +284,11 @@ void TerminalUI::UI_GameSummary() {
 
 void TerminalUI::UI_Timer(double time)
 {
-	cout << "\r!!! Time left to answer: " << time << " seconds !!!";
+	cout << "!!! Time to answer: " << time << " seconds !!!\n";
 }
 
 void TerminalUI::UI_EndTimer()
 {
 	cout << "\n!!! Time is up !!!\n";
+	cout << "Enter * to continue >> ";
 }

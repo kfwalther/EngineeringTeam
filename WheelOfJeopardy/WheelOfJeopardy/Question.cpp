@@ -60,20 +60,20 @@ bool Question::checkAnswer(std::string & playerAnswer)
 	std::transform(playerAnswer.begin(), playerAnswer.end(), playerAnswer.begin(), ::tolower);
 	std::transform(correctAnswer.begin(), correctAnswer.end(), correctAnswer.begin(), ::tolower);
 	// Compare the player answer against the correct answer, and check time.
-	if (playerAnswer != correctAnswer) {
+    if (elapsedTime > this->timer) {
 		// TODO: Make these cout statements calls to UI class.
-		std::cout << "Question::checkAnswer - Wrong! Correct answer was: " << this->answerContent << std::endl;
+		std::cout << "<<< Elapsed time was: " << elapsedTime << " seconds";// << std::endl;
 		this->pointValue *= -1;	//if answered incorrectly, point value is now negative
 		return false;
-	} else if (elapsedTime > this->timer) {
+	}
+	else if (playerAnswer != correctAnswer) {
 		// TODO: Make these cout statements calls to UI class.
-		std::cout << "Question::checkAnswer - Did not answer quickly enough!" << std::endl;
-		std::cout << "Question::checkAnswer - Elapsed time was: " << elapsedTime << " seconds" << std::endl;
+		std::cout << "<<< Correct answer was: " << this->answerContent;// << std::endl;
 		this->pointValue *= -1;	//if answered incorrectly, point value is now negative
 		return false;
 	} else {
 		// TODO: Make these cout statements calls to UI class.
-		std::cout << "Question::checkAnswer - Correct! Time remaining was: " << std::max(0.0, (this->timer - elapsedTime)) << " seconds" << std::endl;//testcode
+		std::cout << "<<< Time remaining was: " << std::max(0.0, (this->timer - elapsedTime)) << " seconds";// << std::endl;//testcode
 		return true;
 	}
 }

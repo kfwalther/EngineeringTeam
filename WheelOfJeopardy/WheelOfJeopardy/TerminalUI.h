@@ -37,7 +37,8 @@ public:
 	virtual void UI_LostTurn();
 	virtual void UI_SpinWheel();
 	virtual void UI_Category(std::string category);
-	virtual void UI_Question(Question & question);
+	virtual void UI_PostQuestion(Question & question);
+	virtual std::string UI_AnswerQuestion();
 	virtual bool UI_AskUseToken();
 	virtual void UI_UseToken();
 	virtual void UI_LoseTurn();
@@ -46,6 +47,7 @@ public:
 	virtual void UI_SpinAgain();
 	virtual void UI_CorrectAnswer();
 	virtual void UI_WrongAnswer();
+	virtual void UI_TimeExpired();
 	virtual void UI_EndTurn();
 	virtual int UI_ChooseCategory(Wheel::StringVectorType const & categories);
 	virtual void UI_OpponentChoice();

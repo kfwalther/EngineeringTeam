@@ -40,7 +40,8 @@ public:
 	virtual void UI_LostTurn() = 0;
 	virtual void UI_SpinWheel() = 0;
 	virtual void UI_Category(std::string category) = 0;
-	virtual void UI_Question(Question & question) = 0;
+	virtual void UI_PostQuestion(Question & question) = 0;
+	virtual std::string UI_AnswerQuestion() = 0;
 	virtual bool UI_AskUseToken() = 0;
 	virtual void UI_UseToken() = 0;
 	virtual void UI_LoseTurn() = 0;
@@ -49,6 +50,7 @@ public:
 	virtual void UI_SpinAgain() = 0;
 	virtual void UI_CorrectAnswer() = 0;
 	virtual void UI_WrongAnswer() = 0;
+	virtual void UI_TimeExpired() = 0;
 	virtual void UI_EndTurn() = 0;
 	virtual int UI_ChooseCategory(Wheel::StringVectorType const & categories) = 0;
 	virtual void UI_OpponentChoice() = 0;
@@ -70,6 +72,7 @@ protected:
 	bool m_gameStarted;
 	bool m_exit;
 	bool m_endGame;
+	bool m_timeExpired;
 	std::vector<Player *> m_players;
 	Player * m_currentPlayer;
 	bool m_answering;

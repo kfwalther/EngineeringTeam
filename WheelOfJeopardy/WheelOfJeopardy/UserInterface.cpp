@@ -150,16 +150,28 @@ void UserInterface::runGameLoop()
 				// UI_* function every x ticks 
 				//
 
-				this->UI_Question(m_session->getCurrentQuestion());
+				this->UI_PostQuestion(m_session->getCurrentQuestion());
 
 				m_answering = true;
+				double time = m_session->getCurrentQuestion().getTime();
+				this->UI_Timer(time);
 
-				if (m_session->answerQuestion())
+				m_timeExpired = false;
+				std::string userAnswer = this->UI_AnswerQuestion();
+
+				m_answering = false;
+				bool correctAnswer = m_session->answerQuestion(userAnswer);
+
+				if (m_timeExpired)
+				{
+					this->UI_TimeExpired();
+				}
+				else if (correctAnswer)
 				{
 					this->UI_CorrectAnswer();
 					spinWheel = true;
 				}
-				else
+				else if (!correctAnswer)
 				{
 					this->UI_WrongAnswer();
 
@@ -198,15 +210,11 @@ void UserInterface::tick()
 		while (m_answering)
 		{
 			double time = m_session->getCurrentQuestion().getTime();
-			
-			if ((int)time != 0)
-			{
-				this->UI_Timer(time);
-				std::this_thread::sleep_for(std::chrono::seconds(1));
-			}
-			else
+
+			if((int)time == 0)
 			{
 				m_answering = false;
+				m_timeExpired = true;
 				this->UI_EndTimer();
 			}
 

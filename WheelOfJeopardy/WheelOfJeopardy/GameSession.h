@@ -47,7 +47,7 @@ struct GameSession
 	void setUserInterfaceHandle(UserInterface * const & userInterface);
 	Question & getCurrentQuestion();
 	void setCurrentQuestion(Question newCurrentQuestion);
-	bool answerQuestion();
+	bool answerQuestion(std::string);
 	Player * const & getCurrentPlayer();
 
 protected:

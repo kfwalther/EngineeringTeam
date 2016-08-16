@@ -21,13 +21,21 @@ using namespace std;
  */
 void main()
 {
-	// Let's test construction of these classes.
-	Player * kevin = new Player("Kevin");
-	kevin->createGame();
-	Player * dan = new Player("Dan");
+	std::string player1 = "Player 1";
+	std::string player2 = "Player 2";
 
-	// Test UI functions
-	TerminalUI * userInterface = new TerminalUI(kevin, dan);
+	cout << "Enter a name for Player 1: ";
+	cin >> player1;
+
+	cout << "Enter a name for Player 2: ";
+	cin >> player2;
+
+	Player * player_Player1 = new Player(player1);
+	player_Player1->createGame();
+
+	Player * player_Player2 = new Player(player2);
+
+	TerminalUI * userInterface = new TerminalUI(player_Player1, player_Player2);
 	userInterface->run();
 
 	//// Define a queue container of question objects.

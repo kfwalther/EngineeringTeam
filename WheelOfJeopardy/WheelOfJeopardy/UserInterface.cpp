@@ -76,7 +76,6 @@ void UserInterface::runGameLoop()
 					}
 					else
 					{
-						//m_currentPlayer->loseTurn();
 						this->UI_LoseTurn();
 					}
 					break;

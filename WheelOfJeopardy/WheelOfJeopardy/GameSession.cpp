@@ -88,7 +88,16 @@ GameSession::PlayerVectorType & GameSession::getPlayers()
 std::tuple<SectorType, std::string> GameSession::spinWheel(int playerId)
 {
 	// Spin the wheel, yielding a new current sector.
-	Sector * const currentSector = this->gameRoomHandle->getWheel()->Spin();
+	std::cout << "CHEATS ENABLED: Which Sector would like you spin to?\n";
+	std::cout << "0-5 :	Category 1-6\n";
+	std::cout << "6:	Bankrupt\n";
+	std::cout << "7:	Lose Turn\n";
+	std::cout << "8:	Free Turn\n";
+	std::cout << "9:	Player Choice\n";
+	std::cout << "10:	Opponent Choice\n";
+	std::cout << "11:	Spin Again\n";
+	int x; std::cin >> x;
+	Sector * const currentSector = this->gameRoomHandle->getWheel()->Spin(x);
 
 	// Perform the internal actions for the current sector.
 	this->gameRoomHandle->getWheel()->getCurrentSector()->Action(this);

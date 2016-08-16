@@ -269,7 +269,7 @@ void TerminalUI::UI_GameSummary() {
 
 void TerminalUI::UI_Timer(double time)
 {
-	cout << "\n!!! Time left to answer: " << time << " seconds !!!";
+	cout << "\r!!! Time left to answer: " << time << " seconds !!!";
 }
 
 void TerminalUI::UI_EndTimer()

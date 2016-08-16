@@ -215,6 +215,11 @@ void UserInterface::tick()
 	}
 }
 
+void UserInterface::tickInterrupt()
+{
+	this->m_answering = false;
+}
+
 bool UserInterface::startGame()
 {
 	// Join the second player to the game.

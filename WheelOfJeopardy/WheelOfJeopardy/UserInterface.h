@@ -34,6 +34,7 @@ public:
 	virtual bool startGame();
 
 	virtual void tick();
+	virtual void tickInterrupt();
 
 	// Pure virtual UI handlers
 	virtual void UI_StartTurn() = 0;

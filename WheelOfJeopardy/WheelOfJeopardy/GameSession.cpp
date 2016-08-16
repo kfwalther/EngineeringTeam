@@ -142,7 +142,7 @@ bool GameSession::answerQuestion() {
 	std::cout << "Answer: ";
 	std::cin.ignore();
 	std::getline(std::cin, response);
-
+	this->userInterfaceHandle->tickInterrupt();
 	int score;
 	// Check the player's answer against the correct answer.
 	if (this->currentQuestion.checkAnswer(response)) {

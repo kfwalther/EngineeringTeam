@@ -281,6 +281,10 @@ void TerminalUI::UI_GameSummary() {
 		cout << "<< Score: " << players.at(i)->getScore() << "\n";
 		cout << "\n";
 	}
+
+	std::string input = "";
+	cout << "Enter any input to exit game: ";
+	cin >> input;
 }
 
 void TerminalUI::UI_Timer(double time)
